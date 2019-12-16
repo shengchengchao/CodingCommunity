@@ -1,5 +1,7 @@
 package com.xixi.pereson.talk.Controller;
 
+import com.xixi.pereson.talk.Model.Users;
+import com.xixi.pereson.talk.Service.UserService;
 import com.xixi.pereson.talk.dto.AccessTokendto;
 import com.xixi.pereson.talk.dto.GithubUserdto;
 import com.xixi.pereson.talk.provider.GithubProvider;
@@ -8,6 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 /**
  * @Auther: xixi-98
@@ -18,7 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
-
+    @Resource
+    private UserService userServiceImpl;
 
     @Value("${AccessTokenfdto.Client_id}")
     private String Client_id;
@@ -38,9 +48,9 @@ public class AuthorizeController {
     * @Date: 2019/12/16
     */
     @RequestMapping("/callback")
-    public String callback(@RequestParam(name="code") String code ,
-                           @RequestParam(name="state") String state){
-
+    public String callback(@RequestParam(name = "code") String code,
+                           @RequestParam(name = "state") String state, HttpSession session,
+                           HttpServletResponse response){
 
         AccessTokendto accessTokendto = new AccessTokendto(Client_id,Client_secret,code,Redirect_uri,state);
 
@@ -52,8 +62,25 @@ public class AuthorizeController {
 
         String accessToken = githubProvider.getAccessToken(accessTokendto);
 
-        GithubUserdto user = githubProvider.getUser(accessToken);
-        return "index";
+        GithubUserdto githubuser = githubProvider.getUser(accessToken);
+        if(githubuser != null && !githubuser.equals("")){
+            String token = UUID.randomUUID().toString();
+            Users user = new Users();
+            user.setAccountid(String.valueOf(githubuser.getId()));
+            user.setName(githubuser.getName());
+            user.setToekn(token);
+            user.setCreatedate(System.currentTimeMillis());
+            user.setUpdatedate(user.getCreatedate());
+            userServiceImpl.insUser(user);
+            Cookie cookie=new Cookie("token",token);
+            response.addCookie(cookie);
+
+
+            return "redirect:/";
+        }else{
+            return "redirect:/";
+        }
+
     }
 
 
