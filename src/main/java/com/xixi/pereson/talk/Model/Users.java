@@ -10,7 +10,7 @@ public class Users {
     private Integer id;
     private String accountid;
     private String name;
-    private String toekn;
+    private String token;
     private Long createdate;
     private Long updatedate;
     private String bio;
@@ -56,12 +56,12 @@ public class Users {
         this.name = name;
     }
 
-    public String getToekn() {
-        return toekn;
+    public String getToken() {
+        return token;
     }
 
-    public void setToekn(String toekn) {
-        this.toekn = toekn;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Long getCreatedate() {
@@ -86,7 +86,7 @@ public class Users {
                 "id=" + id +
                 ", accountid='" + accountid + '\'' +
                 ", name='" + name + '\'' +
-                ", toekn='" + toekn + '\'' +
+                ", token='" + token + '\'' +
                 ", createdate=" + createdate +
                 ", updatedate=" + updatedate +
                 ", bio='" + bio + '\'' +

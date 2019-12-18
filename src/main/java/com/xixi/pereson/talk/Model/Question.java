@@ -11,7 +11,7 @@ public class Question {
     private String description;
     private Long gmtCreate;
     private Long gmtModified;
-    private String creator;
+    private String creatorid;
     private String tag;
     private Integer commentCount;
     private  Integer likeCount;
@@ -25,12 +25,20 @@ public class Question {
                 ", description='" + description + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
-                ", creator='" + creator + '\'' +
+                ", creator='" + creatorid + '\'' +
                 ", tag='" + tag + '\'' +
                 ", commentCount=" + commentCount +
                 ", likeCount=" + likeCount +
                 ", viewCount=" + viewCount +
                 '}';
+    }
+
+    public String getCreatorid() {
+        return creatorid;
+    }
+
+    public void setCreatorid(String creatorid) {
+        this.creatorid = creatorid;
     }
 
     public Long getGmtCreate() {
@@ -99,13 +107,7 @@ public class Question {
 
 
 
-    public String getCreator() {
-        return creator;
-    }
 
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
 
     public String getTag() {
         return tag;

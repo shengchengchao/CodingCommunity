@@ -19,8 +19,8 @@ public interface QuestionMapper {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    @Select("insert into question(title,description,gmt_create,gmt_modified,creator,tag)" +
-            "values (#{title},#{description},#{gmtCreate},#{gmtModified},#{creator},#{tag})")
+    @Select("insert into question(title,description,gmt_create,gmt_modified,creator_id,tag)" +
+            "values (#{title},#{description},#{gmtCreate},#{gmtModified},#{creatorid},#{tag})")
     void insertQuestion(Question question);
     
     /**

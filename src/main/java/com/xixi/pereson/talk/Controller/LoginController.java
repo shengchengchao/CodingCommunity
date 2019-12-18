@@ -51,7 +51,6 @@ public class LoginController {
         //查询出所有的数据，填充列表数据
         List<QuestionDto> questionLists = questionServiceImpl.selQuestionList();
         model.addAttribute("questions",questionLists);
-
         return "index";
     }
 

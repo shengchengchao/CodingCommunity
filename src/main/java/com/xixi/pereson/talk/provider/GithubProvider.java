@@ -61,7 +61,7 @@ public class GithubProvider {
                 String string = response.body().string();
                 //json的转换 使用fastjson
                 GithubUserdto githubUserdto = JSON.parseObject(string, GithubUserdto.class);
-                System.out.println(githubUserdto.toString());
+
                 return githubUserdto;
             } catch (IOException e) {
                 e.printStackTrace();

@@ -34,8 +34,9 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionMapper.selectQuestion();
         List<QuestionDto> questionDtoList=new ArrayList<>();
         for (Question q:questions) {
+            //根据question的creatorid查询出 对应的用户信息
+           Users user = userMapper.selectUsersByaccountid(q.getCreatorid());
 
-            Users user = userMapper.selectUsersByname(q.getCreator());
             QuestionDto questionDto=new QuestionDto();
             //快速的将question中的数据 添加到questionDto对象中，使用get/set对象太复杂
             BeanUtils.copyProperties(q,questionDto);
