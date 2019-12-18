@@ -1,10 +1,13 @@
 package com.xixi.pereson.talk.dto;
 
+import lombok.Data;
+
 /**
  * @Auther: xixi-98
  * @Date: 2019/12/15 20:21
- * @Description:
+ * @Description: AccessToken传输类
  */
+
 public class AccessTokendto {
     private String client_id;
     private String client_secret;

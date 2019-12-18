@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @Auther: xixi-98
  * @Date: 2019/12/15 20:21
- * @Description:
+ * @Description: provider工具类
  */
 @Component
 public class GithubProvider {
@@ -61,13 +61,11 @@ public class GithubProvider {
                 String string = response.body().string();
                 //json的转换 使用fastjson
                 GithubUserdto githubUserdto = JSON.parseObject(string, GithubUserdto.class);
+                System.out.println(githubUserdto.toString());
                 return githubUserdto;
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return null;
-
     }
-
-
 }

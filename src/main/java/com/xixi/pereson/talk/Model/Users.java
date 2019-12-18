@@ -13,6 +13,24 @@ public class Users {
     private String toekn;
     private Long createdate;
     private Long updatedate;
+    private String bio;
+    private String avatarUrl;
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public Integer getId() {
         return id;
@@ -71,6 +89,8 @@ public class Users {
                 ", toekn='" + toekn + '\'' +
                 ", createdate=" + createdate +
                 ", updatedate=" + updatedate +
+                ", bio='" + bio + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }
