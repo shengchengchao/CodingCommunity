@@ -82,7 +82,7 @@ public class PublishController {
 
             Question question=new Question();
             question.setTitle(title);
-            question.setCreatorid(user.getAccountid());
+
             question.setDescription(description);
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());

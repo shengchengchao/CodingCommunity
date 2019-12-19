@@ -3,6 +3,7 @@ package com.xixi.pereson.talk.Service.Service.impl;
 import com.xixi.pereson.talk.Model.Question;
 import com.xixi.pereson.talk.Model.Users;
 import com.xixi.pereson.talk.Service.QuestionService;
+import com.xixi.pereson.talk.dto.PaginationDto;
 import com.xixi.pereson.talk.dto.QuestionDto;
 import com.xixi.pereson.talk.mapper.QuestionMapper;
 import com.xixi.pereson.talk.mapper.UserMapper;
@@ -30,8 +31,29 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDto> selQuestionList() {
-        List<Question> questions = questionMapper.selectQuestion();
+    public PaginationDto selQuestionList(int size, int page) {
+        //问题总数
+        Integer totalCount = questionMapper.count();
+        int totalPage=0;
+        //确认总页数与当前页数
+        if(totalCount % size == 0){
+            totalPage=totalCount / size;
+        }else{
+            totalPage=totalCount / size+1;
+        }
+        if (page<1){
+            page=1;
+        }else if(page>totalPage){
+            page=totalPage;
+        }
+
+        PaginationDto paginationDto=new PaginationDto();
+        //设置需要显示的页码与
+        paginationDto.setpagination(size,page,totalPage);
+
+        //查询出当前页 问题
+        List<Question> questions = questionMapper.selectQuestionBypage((page - 1) * size, size);
+
         List<QuestionDto> questionDtoList=new ArrayList<>();
         for (Question q:questions) {
             //根据question的creatorid查询出 对应的用户信息
@@ -43,6 +65,9 @@ public class QuestionServiceImpl implements QuestionService {
             questionDto.setUser(user);
             questionDtoList.add(questionDto);
         }
-        return questionDtoList;
+        paginationDto.setQuestionList(questionDtoList);
+
+
+        return paginationDto;
     }
 }
