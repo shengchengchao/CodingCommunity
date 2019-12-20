@@ -38,31 +38,29 @@ public class LoginController {
     * @Date: 2019/12/15
     */
     @GetMapping("/index")
-    public  String login(HttpServletRequest request, HttpSession session, Model model,
+    public  String login( HttpSession session, Model model,
                          @RequestParam(defaultValue = "3") int size,
                          @RequestParam(defaultValue = "1") int page){
         //先查询是否有cookie信息  有就取出来 在数据库中进行查询，查询后放入到session中 当关闭浏览器后，cookies失效
 
+        Users user = (Users) session.getAttribute("user");
 
-
-        Cookie[] cookies = request.getCookies();
-        Users user=new Users();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userServiceImpl.selUser(token);
-                if(user != null && !user.equals("")){
-                    session.setAttribute("user",user);
-                }
-                break;
-            }
+        if (user == null || user.equals("")){
+            return "index";
         }
         //查询出当前页数据，填充列表数据
         PaginationDto paginationDto = questionServiceImpl.selQuestionList(size, page);
 
         model.addAttribute("list",paginationDto.getQuestionList());
+
+
+        model.addAttribute("showFirstPage",paginationDto.getShowFirstPage());
+//        model.addAttribute("showFirstPage",paginationDto.getShowFirstPage());
+//        model.addAttribute("showFirstPage",paginationDto.getShowFirstPage());
+//        model.addAttribute("showEndPage",paginationDto.getShowEndPage());
         model.addAttribute("paginationDto",paginationDto);
 
+        model.addAttribute("pages",paginationDto.getPages());
         return "/index";
     }
 

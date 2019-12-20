@@ -1,6 +1,7 @@
 package com.xixi.pereson.talk.mapper;
 
 import com.xixi.pereson.talk.Model.Question;
+import com.xixi.pereson.talk.Model.Users;
 import com.xixi.pereson.talk.dto.QuestionDto;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -46,4 +47,18 @@ public interface QuestionMapper {
     */
     @Select( "select count(1) from question")
     Integer count();
+    
+    /**
+    * @Description: 根据用户id查询所有问题数
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2019/12/20
+    */
+    @Select( "select count(1) from question where creator_id=#{creatorid}")
+    Integer countByaccountid(String creatorid);
+
+    @Select("select * from question where creator_id=#{accountid} limit #{offset},#{size}")
+    List<Question> selectQuestionByCreatorid(@Param("accountid") String accountid, @Param(value = "offset") Integer offset,
+                                             @Param(value = "size") Integer size);
 }

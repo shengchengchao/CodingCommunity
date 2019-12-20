@@ -4,7 +4,6 @@ import com.xixi.pereson.talk.Model.Question;
 import com.xixi.pereson.talk.Model.Users;
 import com.xixi.pereson.talk.Service.QuestionService;
 import com.xixi.pereson.talk.Service.UserService;
-import com.xixi.pereson.talk.mapper.QuestionMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.UUID;
 
 /**
  * @Auther: xixi-98
@@ -47,7 +43,7 @@ public class PublishController {
     public  String questionController(@RequestParam(value = "title", required = false) String title,
                                       @RequestParam(value = "description", required = false) String description,
                                       @RequestParam(value = "tag", required = false) String tag,
-                                      Model model, HttpServletRequest request, HttpSession session){
+                                      Model model,HttpSession session){
 
         model.addAttribute("title",title);
         model.addAttribute("description",description);
@@ -66,17 +62,9 @@ public class PublishController {
             return "publish";
         }
 
-        Users user=new Users();
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userServiceImpl.selUser(token);
-                if(user != null && !user.equals("")){
-                    session.setAttribute("user",user);
-                }
-                break;
-            }
+        Users user = (Users) session.getAttribute("user");
+        if (user == null || user.equals("")){
+            return "index";
         }
         if(user != null && !user.equals("")){
 

@@ -1,6 +1,7 @@
 package com.xixi.pereson.talk.Service;
 
 import com.xixi.pereson.talk.Model.Question;
+import com.xixi.pereson.talk.Model.Users;
 import com.xixi.pereson.talk.dto.PaginationDto;
 import com.xixi.pereson.talk.dto.QuestionDto;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,5 @@ public interface QuestionService {
     */
     PaginationDto selQuestionList(int size,int page);
 
+    PaginationDto selQuestionListByid(String accountid, int size, int page);
 }
