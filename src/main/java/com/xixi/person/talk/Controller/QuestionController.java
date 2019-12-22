@@ -36,6 +36,6 @@ public class QuestionController {
         }
         QuestionDto questionDto=questionServiceImpl.selQuestionByid(question.getId());
         model.addAttribute("questionDto",questionDto);
-        return "publish";
+        return "question";
     }
 }
