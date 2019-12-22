@@ -17,7 +17,7 @@
             <h2><span th:text="${sectionName}"></span></h2>
             <hr>
 
-            <div class="media" th:each="question : ${profilelist}">
+            <div class="media" th:each="question : ${pageInfo.list}">
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
@@ -25,7 +25,9 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <h4 class="media-heading">
+                        <a th:href="@{'/question/'+ ${question.id}}" th:text="${question.title}"></a>
+                    </h4>
                     <span th:text="${question.description}"></span> <br>
                     <span class="text-desc"><span th:text="${question.commentCount}"></span> 个回复 • <span
                             th:text="${question.viewCount}"></span> 次浏览 • <span  th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
@@ -34,29 +36,29 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <!-- 显示第一页图标 <<-->
-                    <li th:if="${profilepaginationDto.showFirstPage}">
+                    <li th:if="${pageInfo.isFirstPage}">
                         <a href="/profile/question?page=1" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <!-- 显示上一页图标 <-->
-                    <li th:if="${profilepaginationDto.showPreviousPage}">
-                        <a  th:href="@{/profile/question(page=${profilepaginationDto.page - 1})}"  aria-label="Previous">
+                    <li th:if="${pageInfo.hasPreviousPage}">
+                        <a  th:href="@{/profile/question(page=${pageInfo.pageNum - 1})}"  aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <!-- 显示页码图标 < -->
-                    <li th:each="page : ${profilepages}"><a th:href="@{/profile/question(page=${page})}"
+                    <li th:each="page : ${pageInfo.navigatepageNums}"><a th:href="@{/profile/question(page=${page})}"
                                                      th:text="${page}"></a></li>
                     <!-- 显示下一页图标 >-->
-                    <li th:if="${profilepaginationDto.showNextPage}">
-                        <a th:href="@{/profile/question(page=${profilepaginationDto.page +1 })}" aria-label="Previous">
+                    <li th:if="${pageInfo.hasNextPage}">
+                        <a th:href="@{/profile/question(page=${pageInfo.pageNum +1 })}" aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <!-- 显示最后最后一页图标 >>-->
-                    <li th:if="${profilepaginationDto.showEndPage}">
-                        <a th:href="@{/profile/question(page=${profilepaginationDto.totalPage})}"  aria-label="Previous">
+                    <li th:if="${pageInfo.isLastPage}">
+                        <a th:href="@{/profile/question(page=${pageInfo.pages })}"  aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
