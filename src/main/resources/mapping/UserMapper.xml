@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xixi.person.talk.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="com.xixi.person.talk.model.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="token" property="token" jdbcType="CHAR" />
     <result column="create_date" property="createDate" jdbcType="BIGINT" />
@@ -86,15 +86,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from user
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.xixi.person.talk.model.UserExample" >
     delete from user
@@ -106,7 +106,7 @@
     insert into user (id, account_id, name, 
       token, create_date, update_date, 
       bio, avatar_url)
-    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{accountId,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, 
       #{token,jdbcType=CHAR}, #{createDate,jdbcType=BIGINT}, #{updateDate,jdbcType=BIGINT}, 
       #{bio,jdbcType=VARCHAR}, #{avatarUrl,jdbcType=VARCHAR})
   </insert>
@@ -140,10 +140,10 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="accountId != null" >
-        #{accountId,jdbcType=VARCHAR},
+        #{accountId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -175,10 +175,10 @@
     update user
     <set >
       <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.accountId != null" >
-        account_id = #{record.accountId,jdbcType=VARCHAR},
+        account_id = #{record.accountId,jdbcType=BIGINT},
       </if>
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
@@ -205,8 +205,8 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user
-    set id = #{record.id,jdbcType=INTEGER},
-      account_id = #{record.accountId,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=BIGINT},
+      account_id = #{record.accountId,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       token = #{record.token,jdbcType=CHAR},
       create_date = #{record.createDate,jdbcType=BIGINT},
@@ -221,7 +221,7 @@
     update user
     <set >
       <if test="accountId != null" >
-        account_id = #{accountId,jdbcType=VARCHAR},
+        account_id = #{accountId,jdbcType=BIGINT},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -242,17 +242,17 @@
         avatar_url = #{avatarUrl,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xixi.person.talk.model.User" >
     update user
-    set account_id = #{accountId,jdbcType=VARCHAR},
+    set account_id = #{accountId,jdbcType=BIGINT},
       name = #{name,jdbcType=VARCHAR},
       token = #{token,jdbcType=CHAR},
       create_date = #{createDate,jdbcType=BIGINT},
       update_date = #{updateDate,jdbcType=BIGINT},
       bio = #{bio,jdbcType=VARCHAR},
       avatar_url = #{avatarUrl,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -1,9 +1,9 @@
 package com.xixi.person.talk.model;
 
 public class User {
-    private Integer id;
+    private Long id;
 
-    private String accountId;
+    private Long accountId;
 
     private String name;
 
@@ -17,20 +17,20 @@ public class User {
 
     private String avatarUrl;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId == null ? null : accountId.trim();
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public String getName() {

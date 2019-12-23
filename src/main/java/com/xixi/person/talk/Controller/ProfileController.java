@@ -3,7 +3,6 @@ package com.xixi.person.talk.Controller;
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.dto.PaginationDto;
 import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

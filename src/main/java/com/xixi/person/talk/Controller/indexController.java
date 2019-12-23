@@ -3,11 +3,9 @@ package com.xixi.person.talk.Controller;
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.dto.PaginationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
@@ -33,8 +31,6 @@ public class IndexController {
     public  String login( HttpSession session, Model model,
                          @RequestParam(defaultValue = "3") int size,
                          @RequestParam(defaultValue = "1") int page){
-
-        PaginationDto paginationDto=new PaginationDto();
         String id="";
         //查询出当前页数据，填充列表数据
         PageInfo pageInfo = questionServiceImpl.selQuestionList(id,size, page);

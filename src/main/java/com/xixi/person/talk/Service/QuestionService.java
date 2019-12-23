@@ -1,7 +1,6 @@
 package com.xixi.person.talk.Service;
 
 import com.github.pagehelper.PageInfo;
-import com.xixi.person.talk.dto.PaginationDto;
 import com.xixi.person.talk.dto.QuestionDto;
 
 /**
@@ -29,16 +28,8 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    PageInfo selQuestionList(String accountid,int size, int page);
-    
-    /**
-    * @Description: 根据用户accountid  查出当前页的问题
-    * @Param: 
-    * @return: 
-    * @Author: xixi
-    * @Date: 2019/12/20
-    */
-//    PaginationDto selQuestionListByid(String accountid, int size, int page);
+    PageInfo selQuestionList(Long accountid,int size, int page);
+
 
     
     /**
@@ -48,7 +39,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/20
     */
-    QuestionDto selQuestionByid(int id);
+    QuestionDto selQuestionByid(Long id);
     
     /**
     * @Description:  进行修改操作
@@ -58,6 +49,13 @@ public interface QuestionService {
     * @Date: 2019/12/21
     */
     void updateQuestion(QuestionDto questionDto);
-
-
+    
+    /**
+    * @Description: 添加问题浏览量
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2019/12/23
+    */
+    void insviewCount(Long id);
 }

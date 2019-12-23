@@ -73,7 +73,6 @@ public class PublishController {
         //先判断用户是否进行了登录 未登录就显示错误
         User user = (User) session.getAttribute("user");
         if(user != null && !user.equals("")){
-            //
             if(questionDto.getId() != null && !questionDto.getId().equals("")){
                 // 将使用id查询出的QuestionDto 与session中的用户id进行比较  防止 非提问者对问题进行篡改 跳转index页面 使cookies失效
                 QuestionDto selectQuestion = questionServiceImpl.selQuestionByid(questionDto.getId());

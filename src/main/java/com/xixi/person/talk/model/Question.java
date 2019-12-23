@@ -1,7 +1,7 @@
 package com.xixi.person.talk.model;
 
 public class Question {
-    private Integer id;
+    private Long id;
 
     private String title;
 
@@ -9,7 +9,7 @@ public class Question {
 
     private Long gmtModified;
 
-    private String creatorId;
+    private Long creatorId;
 
     private Integer commentCount;
 
@@ -21,11 +21,11 @@ public class Question {
 
     private String description;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,12 +53,12 @@ public class Question {
         this.gmtModified = gmtModified;
     }
 
-    public String getCreatorId() {
+    public Long getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(String creatorId) {
-        this.creatorId = creatorId == null ? null : creatorId.trim();
+    public void setCreatorId(Long creatorId) {
+        this.creatorId = creatorId;
     }
 
     public Integer getCommentCount() {

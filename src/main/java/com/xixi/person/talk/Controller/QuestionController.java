@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class QuestionController {
     @Resource
     private QuestionService questionServiceImpl;
-    
+
     /**
     * @Description: 查询出指定id的问题 并跳转publish页面进行修改操作
     * @Param: 
@@ -34,6 +34,7 @@ public class QuestionController {
         if (user == null || user.equals("")){
             return "index";
         }
+        questionServiceImpl.insviewCount(question.getId());
         QuestionDto questionDto=questionServiceImpl.selQuestionByid(question.getId());
         model.addAttribute("questionDto",questionDto);
         return "question";

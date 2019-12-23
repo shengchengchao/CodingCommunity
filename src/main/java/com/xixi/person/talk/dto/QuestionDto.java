@@ -8,25 +8,19 @@ import com.xixi.person.talk.model.User;
  * @Description: question对象传输类
  */
 public class QuestionDto {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Long gmtCreate;
     private Long gmtModified;
-    private String creatorId;
+    private Long creatorId;
     private String tag;
     private Integer commentCount;
     private  Integer likeCount;
     private Integer viewCount;
     private User user;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -44,12 +38,19 @@ public class QuestionDto {
         this.description = description;
     }
 
+    public Long getId() {
+        return id;
+    }
 
-    public String getCreatorId() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(String creatorId) {
+    public void setCreatorId(Long creatorId) {
         this.creatorId = creatorId;
     }
 

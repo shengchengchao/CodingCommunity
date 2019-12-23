@@ -1,11 +1,13 @@
-package com.xixi.person.talk.Service.Service.impl;
+package com.xixi.person.talk.Service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.Service.QuestionService;
-import com.xixi.person.talk.dto.PaginationDto;
 import com.xixi.person.talk.dto.QuestionDto;
+import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
+import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.mapper.QuestionMapper;
+import com.xixi.person.talk.mapper.QuestionextraMapper;
 import com.xixi.person.talk.mapper.UserMapper;
 import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.QuestionExample;
@@ -30,6 +32,8 @@ public class QuestionServiceImpl implements QuestionService {
    @Resource
    private UserMapper userMapper;
 
+   @Resource
+   private QuestionextraMapper questionextraMapper;
 
     @Override
     public void insquestion(QuestionDto questionDto) {
@@ -42,7 +46,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public PageInfo selQuestionList(String accountId,int size, int page) {
+    public PageInfo selQuestionList(Long accountId,int size, int page) {
         //查询出当前页 问题
         PageHelper.startPage(page,size);
         QuestionExample quesionExample = new QuestionExample();
@@ -60,7 +64,7 @@ public class QuestionServiceImpl implements QuestionService {
             QuestionDto questionDto = new QuestionDto();
             BeanUtils.copyProperties(o,questionDto);
             UserExample userExample = new UserExample();
-            String accountid =((Question)o).getCreatorId();
+            Long accountid =((Question)o).getCreatorId();
             userExample.createCriteria().andAccountIdEqualTo(accountid);
             List<User> users = userMapper.selectByExample(userExample);
             questionDto.setUser(users.get(0));
@@ -71,12 +75,15 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public QuestionDto selQuestionByid(int id) {
+    public QuestionDto selQuestionByid(Long id) {
         QuestionDto questionDto=new QuestionDto();
 
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andIdEqualTo(id);
         List<Question> questions = questionMapper.selectByExampleWithBLOBs(questionExample);
+        if(questions==null){
+            throw new QuestionException(QuestionErrorCodeEnum.QUESTION_NOT_FOUND);
+        }
         BeanUtils.copyProperties(questions.get(0),questionDto);
         UserExample userExample = new UserExample();
         userExample.createCriteria().andAccountIdEqualTo(questions.get(0).getCreatorId());
@@ -92,7 +99,19 @@ public class QuestionServiceImpl implements QuestionService {
         question.setGmtModified(System.currentTimeMillis());
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andIdEqualTo(question.getId());
-        questionMapper.updateByExampleSelective(question, questionExample);
+        int update = questionMapper.updateByExampleSelective(question, questionExample);
+        if(update != 1){
+            //多处需要判断 要封装一个枚举
+            throw new QuestionException(QuestionErrorCodeEnum.QUESTION_NOT_FOUND);
+        }
+    }
+
+
+    public void insviewCount(Long id){
+        Question question=new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionextraMapper.updatevicwConunt(question);
     }
 
 

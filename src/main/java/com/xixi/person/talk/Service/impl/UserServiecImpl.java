@@ -1,4 +1,4 @@
-package com.xixi.person.talk.Service.Service.impl;
+package com.xixi.person.talk.Service.impl;
 
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.mapper.UserMapper;
