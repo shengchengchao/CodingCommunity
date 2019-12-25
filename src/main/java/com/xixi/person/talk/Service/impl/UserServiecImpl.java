@@ -5,6 +5,7 @@ import com.xixi.person.talk.mapper.UserMapper;
 import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.model.UserExample;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -28,6 +29,7 @@ public class UserServiecImpl implements UserService {
     * @Date: 2019/12/18
     */
     @Override
+    @Transactional
     public void insUser(User user) {
         //查询所有的use用户
         List<User> users = userMapper.selectByExample(new UserExample());

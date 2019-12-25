@@ -20,6 +20,11 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-
+    <update id="updatecommentConunt" parameterType="com.xixi.person.talk.model.Question">
+        update question
+        set
+        comment_count = comment_count+#{commentCount,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
 </mapper>

@@ -15,6 +15,7 @@ import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.model.UserExample;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -36,6 +37,7 @@ public class QuestionServiceImpl implements QuestionService {
    private QuestionextraMapper questionextraMapper;
 
     @Override
+    @Transactional
     public void insquestion(QuestionDto questionDto) {
         Question question=new Question();
         BeanUtils.copyProperties(questionDto,question);
@@ -51,7 +53,7 @@ public class QuestionServiceImpl implements QuestionService {
         PageHelper.startPage(page,size);
         QuestionExample quesionExample = new QuestionExample();
         //判断accountId是否存在
-        if(accountId!=null && ! accountId.equals("")){
+        if(accountId != 0L){
             quesionExample.createCriteria().andCreatorIdEqualTo(accountId);
         }
         //问题总数
@@ -93,6 +95,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional
     public void updateQuestion(QuestionDto questionDto) {
         Question question=new Question();
         BeanUtils.copyProperties(questionDto,question);
@@ -106,7 +109,7 @@ public class QuestionServiceImpl implements QuestionService {
         }
     }
 
-
+    @Transactional
     public void insviewCount(Long id){
         Question question=new Question();
         question.setId(id);

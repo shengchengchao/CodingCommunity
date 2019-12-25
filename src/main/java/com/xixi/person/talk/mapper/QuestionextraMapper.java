@@ -10,4 +10,6 @@ import com.xixi.person.talk.model.Question;
 public interface QuestionextraMapper {
 
     void updatevicwConunt(Question question);
+
+    void updatecommentConunt(Question question);
 }

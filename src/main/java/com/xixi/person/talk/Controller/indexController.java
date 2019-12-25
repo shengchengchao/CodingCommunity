@@ -31,7 +31,7 @@ public class IndexController {
     public  String login( HttpSession session, Model model,
                          @RequestParam(defaultValue = "3") int size,
                          @RequestParam(defaultValue = "1") int page){
-        String id="";
+        Long id=0L;
         //查询出当前页数据，填充列表数据
         PageInfo pageInfo = questionServiceImpl.selQuestionList(id,size, page);
         model.addAttribute("pageInfo",pageInfo);

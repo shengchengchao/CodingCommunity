@@ -8,4 +8,5 @@ package com.xixi.person.talk.exception;
 public interface MyErrorCode {
 
     String getMessage();
+    int getCode();
 }

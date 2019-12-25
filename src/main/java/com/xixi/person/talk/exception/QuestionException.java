@@ -8,17 +8,18 @@ package com.xixi.person.talk.exception;
 public class QuestionException extends RuntimeException {
 
     private String message;
+    private int code;
 
     public QuestionException(MyErrorCode error) {
+        this.code=error.getCode();
         this.message = error.getMessage();
     }
-
-    public QuestionException(String message) {
-        this.message = message;
-    }
-
     @Override
     public String getMessage() {
         return message;
+    }
+
+    public int getCode() {
+        return code;
     }
 }
