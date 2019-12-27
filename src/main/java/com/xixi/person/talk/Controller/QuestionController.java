@@ -1,7 +1,11 @@
 package com.xixi.person.talk.Controller;
 
+import com.xixi.person.talk.Enum.CommentTypeEnum;
+import com.xixi.person.talk.Service.CommentService;
 import com.xixi.person.talk.Service.QuestionService;
+import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.dto.QuestionDto;
+import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @Auther: xixi-98
@@ -19,7 +24,8 @@ import javax.servlet.http.HttpSession;
 public class QuestionController {
     @Resource
     private QuestionService questionServiceImpl;
-
+    @Resource
+    private CommentService commentServiceImpl;
     /**
     * @Description: 查询出指定id的问题 并跳转publish页面进行修改操作
     * @Param: 
@@ -36,7 +42,11 @@ public class QuestionController {
         }
         questionServiceImpl.insviewCount(question.getId());
         QuestionDto questionDto=questionServiceImpl.selQuestionByid(question.getId());
+        List<CommentDto> commentDtos = commentServiceImpl.selCommentList(question.getId(), CommentTypeEnum.QUESTION);
+        List<Question> tagQuestion = questionServiceImpl.selTagrealted(question);
+        model.addAttribute("relatedQuestions",tagQuestion);
         model.addAttribute("questionDto",questionDto);
+        model.addAttribute("comments",commentDtos);
         return "question";
     }
 }

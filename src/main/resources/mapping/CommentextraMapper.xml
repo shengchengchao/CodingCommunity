@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xixi.person.talk.mapper.CommentextraMapper" >
+    <resultMap id="BaseResultMap" type="com.xixi.person.talk.model.Comment" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="commentator" property="commentator" jdbcType="BIGINT" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="BIGINT" />
+        <result column="like_count" property="likeCount" jdbcType="BIGINT" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+    </resultMap>
+
+    <update id="updatecommentConunt" parameterType="com.xixi.person.talk.model.Comment" >
+        update comment
+            SET
+               comment_count = comment_count+#{commentCount,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

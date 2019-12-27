@@ -1,6 +1,14 @@
-package com.xixi.person.talk.model;
+package com.xixi.person.talk.dto;
 
-public class Comment {
+import com.xixi.person.talk.model.User;
+
+/**
+ * @Auther: xixi-98
+ * @Date: 2019/12/26 09:20
+ * @Description:
+ */
+public class CommentDto {
+
     private Long id;
 
     private Long parentId;
@@ -18,6 +26,16 @@ public class Comment {
     private String content;
 
     private Integer commentCount;
+
+    private User user;
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public Long getId() {
         return id;
@@ -80,14 +98,14 @@ public class Comment {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
     }
 
-    public Integer getCommentCount() {
-        return commentCount;
+    public User getUser() {
+        return user;
     }
 
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

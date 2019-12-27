@@ -52,6 +52,7 @@ public class QuestionServiceImpl implements QuestionService {
         //查询出当前页 问题
         PageHelper.startPage(page,size);
         QuestionExample quesionExample = new QuestionExample();
+        quesionExample.setOrderByClause("gmt_create desc");
         //判断accountId是否存在
         if(accountId != 0L){
             quesionExample.createCriteria().andCreatorIdEqualTo(accountId);
@@ -115,6 +116,20 @@ public class QuestionServiceImpl implements QuestionService {
         question.setId(id);
         question.setViewCount(1);
         questionextraMapper.updatevicwConunt(question);
+    }
+
+    @Override
+    public List<Question> selTagrealted(QuestionDto questionDto) {
+        Question selQuestion = questionMapper.selectByPrimaryKey(questionDto.getId());
+        String tag = selQuestion.getTag();
+        //输入法中中文与英文， 在分割中存在区别 需要两次检验 第二次不能用tag s失败会返回原字符串 前一次正则失效。
+        String s = tag.replaceAll(",", "|");
+        String s1 = s.replaceAll("，", "|");
+        Question question=new Question();
+        question.setTag(s);
+        question.setId(questionDto.getId());
+        List<Question> questions = questionextraMapper.selQuestionTag(question);
+        return questions;
     }
 
 

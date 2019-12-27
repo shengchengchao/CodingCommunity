@@ -2,6 +2,9 @@ package com.xixi.person.talk.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.dto.QuestionDto;
+import com.xixi.person.talk.model.Question;
+
+import java.util.List;
 
 /**
  * @Auther: xixi-98
@@ -58,4 +61,13 @@ public interface QuestionService {
     * @Date: 2019/12/23
     */
     void insviewCount(Long id);
+    
+    /**
+    * @Description: 查询出标签相同的问题
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2019/12/27
+    */
+    List<Question> selTagrealted(QuestionDto question);
 }

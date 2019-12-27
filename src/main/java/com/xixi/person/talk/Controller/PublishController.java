@@ -3,7 +3,9 @@ package com.xixi.person.talk.Controller;
 import com.xixi.person.talk.Service.QuestionService;
 
 import com.xixi.person.talk.dto.QuestionDto;
+import com.xixi.person.talk.dto.TagCache;
 import com.xixi.person.talk.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +39,7 @@ public class PublishController {
     public String publish(Model model,QuestionDto questionDto){
 
         model.addAttribute("questionDto",questionDto);
-
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
@@ -56,6 +58,7 @@ public class PublishController {
         model.addAttribute("title",questionDto.getTitle());
         model.addAttribute("description",questionDto.getDescription());
         model.addAttribute("tag",questionDto.getTag());
+        model.addAttribute("tags", TagCache.get());
 
         if (questionDto.getTitle() == null || questionDto.getTitle().equals("")){
             model.addAttribute("error","标题不能为空");
@@ -69,7 +72,14 @@ public class PublishController {
             model.addAttribute("error","标签不能为空");
             return "publish";
         }
-
+        String invalid = TagCache.filterInvalid(questionDto.getTag());
+        if (StringUtils.isNotBlank(invalid)) {
+            model.addAttribute("error", "输入非法标签:" + invalid);
+            return "publish";
+        }
+        //对于 中文的，进行替换、
+        String tag = questionDto.getTag().replaceAll("，", ",");
+        questionDto.setTag(tag);
         //先判断用户是否进行了登录 未登录就显示错误
         User user = (User) session.getAttribute("user");
         if(user != null && !user.equals("")){

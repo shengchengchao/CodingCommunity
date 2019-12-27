@@ -21,10 +21,13 @@
     </update>
 
     <update id="updatecommentConunt" parameterType="com.xixi.person.talk.model.Question">
-        update question
+        update comment
         set
         comment_count = comment_count+#{commentCount,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
+    <select id="selQuestionTag" resultMap="BaseResultMap" parameterType="com.xixi.person.talk.model.Question" >
+        select id,title,tag from question WHERE id !=#{id} and tag REGEXP #{tag}
+    </select>
 </mapper>

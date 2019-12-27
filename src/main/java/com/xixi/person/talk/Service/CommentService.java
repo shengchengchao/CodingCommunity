@@ -1,6 +1,10 @@
 package com.xixi.person.talk.Service;
 
+import com.xixi.person.talk.Enum.CommentTypeEnum;
+import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.model.Comment;
+
+import java.util.List;
 
 /**
  * @Auther: xixi-98
@@ -17,4 +21,6 @@ public interface CommentService {
     * @Date: 2019/12/23
     */
     void insertComment(Comment comment);
+
+    List<CommentDto> selCommentList(Long id,CommentTypeEnum type);
 }

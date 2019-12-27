@@ -8,10 +8,10 @@ import com.xixi.person.talk.exception.QuestionException;
  * @Date: 2019/12/24 20:18
  * @Description:
  */
-public class ResultDto {
+public class ResultDto<T> {
     private int code;
     private String message;
-
+    private T data;
     public static ResultDto errorof(int code,String message){
         ResultDto resultDto=new ResultDto();
         resultDto.setCode(code);
@@ -34,6 +34,13 @@ public class ResultDto {
         resultDto.setMessage("成功，success");
         return resultDto;
     }
+    public static <T> ResultDto okOf(T t) {
+        ResultDto resultDTO = new ResultDto();
+        resultDTO.setCode(200);
+        resultDTO.setMessage("请求成功");
+        resultDTO.setData(t);
+        return resultDTO;
+    }
 
 
 
@@ -53,5 +60,11 @@ public class ResultDto {
         this.message = message;
     }
 
+    public T getData() {
+        return data;
+    }
 
+    public void setData(T date) {
+        this.data = date;
+    }
 }

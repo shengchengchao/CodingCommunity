@@ -12,7 +12,8 @@ public enum QuestionErrorCodeEnum implements MyErrorCode{
     QUESTION_NOT_SELECT(2002,"未选中该问题，请重新选择"),
     TYPE_NOT_SELECT(2003,"评论类型不对,请重新选择"),
     COMMENT_NOT_SELECT(2004,"评论未被选中,请重新选择"),
-    SYS_ERROR(2005,"系统错误");
+    SYS_ERROR(2005,"系统错误"),
+    COMMENT_IS_EMPTY(2006,"评论不能为空");
 
 
     private String message;
