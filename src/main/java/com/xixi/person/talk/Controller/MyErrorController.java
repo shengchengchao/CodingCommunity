@@ -28,7 +28,7 @@ public class MyErrorController implements ErrorController {
     @RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
     public ModelAndView errorHtml(HttpServletRequest request, Model model) {
         HttpStatus status = getStatus(request);
-
+        //出错了就返回对应的错误信息
         if (status.is4xxClientError()) {
             model.addAttribute("message", "你这个请求错了吧，要不然换个姿势？");
         }

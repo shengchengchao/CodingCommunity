@@ -41,8 +41,11 @@ public class QuestionController {
             return "index";
         }
         questionServiceImpl.insviewCount(question.getId());
+        //得到问题的信息
         QuestionDto questionDto=questionServiceImpl.selQuestionByid(question.getId());
+        //获得该问题下的评论
         List<CommentDto> commentDtos = commentServiceImpl.selCommentList(question.getId(), CommentTypeEnum.QUESTION);
+        //获得与该问题标签相似的问题
         List<Question> tagQuestion = questionServiceImpl.selTagrealted(question);
         model.addAttribute("relatedQuestions",tagQuestion);
         model.addAttribute("questionDto",questionDto);

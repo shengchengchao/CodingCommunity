@@ -77,8 +77,9 @@ public class PublishController {
             model.addAttribute("error", "输入非法标签:" + invalid);
             return "publish";
         }
-        //对于 中文的，进行替换、
+        //对于 中文的，进行替换、 使用标签库之后 可以简化对其进行简化，但仍存在手动输入的问题
         String tag = questionDto.getTag().replaceAll("，", ",");
+
         questionDto.setTag(tag);
         //先判断用户是否进行了登录 未登录就显示错误
         User user = (User) session.getAttribute("user");

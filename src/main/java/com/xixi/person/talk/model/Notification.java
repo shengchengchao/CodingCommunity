@@ -1,46 +1,23 @@
-package com.xixi.person.talk.dto;
+package com.xixi.person.talk.model;
 
-/**
- * @Auther: xixi-98
- * @Date: 2019/12/29 16:48
- * @Description:
- */
-public class NotificationDto {
+public class Notification {
     private Long id;
-
+    //通知者
     private Long notifier;
-
+    //需要被通知的人
     private Long receiver;
-
+    //回复评论或者问题的id
     private Long outerid;
-
+    //使用enum 表示是回复了问题 还是评论
     private Integer type;
-
+    //创建时间
     private Long gmtCreate;
-
+    //已读 还是未读
     private Integer status;
-
+    //通知者名字
     private String notifierName;
-
+    //回复评论或者问题的title
     private String outerTitle;
-
-    private String typeName;
-
-    @Override
-    public String toString() {
-        return "NotificationDto{" +
-                "id=" + id +
-                ", notifier=" + notifier +
-                ", receiver=" + receiver +
-                ", outerid=" + outerid +
-                ", type=" + type +
-                ", gmtCreate=" + gmtCreate +
-                ", status=" + status +
-                ", notifierName='" + notifierName + '\'' +
-                ", outerTitle='" + outerTitle + '\'' +
-                ", typeName='" + typeName + '\'' +
-                '}';
-    }
 
     public Long getId() {
         return id;
@@ -103,7 +80,7 @@ public class NotificationDto {
     }
 
     public void setNotifierName(String notifierName) {
-        this.notifierName = notifierName;
+        this.notifierName = notifierName == null ? null : notifierName.trim();
     }
 
     public String getOuterTitle() {
@@ -111,14 +88,6 @@ public class NotificationDto {
     }
 
     public void setOuterTitle(String outerTitle) {
-        this.outerTitle = outerTitle;
-    }
-
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
+        this.outerTitle = outerTitle == null ? null : outerTitle.trim();
     }
 }

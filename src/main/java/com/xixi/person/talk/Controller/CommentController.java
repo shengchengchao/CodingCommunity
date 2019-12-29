@@ -42,11 +42,18 @@ public class CommentController {
         comment.setCommentator(1L);
         comment.setLikeCount(0L);
         comment.setCommentator(user.getAccountId());
-
-        commentServiceImpl.insertComment(comment);
+        //添加评论
+        commentServiceImpl.insertComment(comment,user);
         return ResultDto.okof();
     }
 
+    /**
+    * @Description: 返回一个评论下的二级评论的列表
+    * @Param: id 问题的id
+    * @return:  该问题下的评论
+    * @Author: xixi
+    * @Date: 2019/12/28
+    */
     @ResponseBody
     @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
     public ResultDto<List<CommentDto>> addComment(@PathVariable(name="id")long id){

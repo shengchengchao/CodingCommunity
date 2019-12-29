@@ -12,21 +12,21 @@
         <result column="like_count" jdbcType="INTEGER" property="likeCount" />
         <result column="tag" jdbcType="VARCHAR" property="tag" />
     </resultMap>
-
+    <!-- 修改浏览数 -->
     <update id="updatevicwConunt" parameterType="com.xixi.person.talk.model.Question">
         update question
         set
         view_count = view_count+#{viewCount,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-
+    <!--修改问题的评论数-->
     <update id="updatecommentConunt" parameterType="com.xixi.person.talk.model.Question">
         update comment
         set
         comment_count = comment_count+#{commentCount,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-
+    <!--选择出与问题标签相同的问题 使用了正则的方法 我们对于tag参数进行了替换 -->
     <select id="selQuestionTag" resultMap="BaseResultMap" parameterType="com.xixi.person.talk.model.Question" >
         select id,title,tag from question WHERE id !=#{id} and tag REGEXP #{tag}
     </select>

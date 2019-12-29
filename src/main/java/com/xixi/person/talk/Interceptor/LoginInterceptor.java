@@ -1,5 +1,6 @@
 package com.xixi.person.talk.Interceptor;
 
+import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Resource
     private UserService userServiceImpl;
+    @Resource
+    private NotificationService notificationServiceImpl;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -30,6 +33,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 user = userServiceImpl.selUser(token);
                 if(user != null && !user.equals("")){
                     request.getSession().setAttribute("user",user);
+                    int unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
+                    request.getSession().setAttribute("unreadCount", unreadCount);
                 }
                 break;
             }

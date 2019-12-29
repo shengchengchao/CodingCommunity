@@ -1,8 +1,10 @@
 package com.xixi.person.talk.Controller;
 
 import com.github.pagehelper.PageInfo;
+import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
+import com.xixi.person.talk.Service.impl.NotificationServiceImpl;
 import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ public class ProfileController {
     private UserService userServiceImpl;
     @Resource
     private QuestionService questionServiceImpl;
+    @Resource
+    private NotificationService notificationServiceImpl;
     
     /**
     * @Description: 显示出我的所有问题
@@ -42,16 +46,17 @@ public class ProfileController {
         if (user == null || user.equals("")){
             return "index";
         }
-        if("questions".equals(action)){
+        if("question".equals(action)){
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的提问");
-        }else if("replies".equals("action")){
+            PageInfo pageInfo=questionServiceImpl.selQuestionList(user.getAccountId(),size,page);
+            model.addAttribute("pageInfo",pageInfo);
+        }else if("replies".equals(action)){
             model.addAttribute("section","replies");
             model.addAttribute("sectionName","最近回复");
+            PageInfo pageInfo= notificationServiceImpl.selNotificationList(user.getAccountId(),size,page);
+            model.addAttribute("pageInfo",pageInfo);
         }
-
-        PageInfo pageInfo=questionServiceImpl.selQuestionList(user.getAccountId(),size,page);
-        model.addAttribute("pageInfo",pageInfo);
         return "profile";
     }
 }
