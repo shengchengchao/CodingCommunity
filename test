@@ -1,0 +1,15 @@
+2019-12-31 15:07:33.219  INFO 2812 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Starting TalkApplication on LAPTOP-QEAENHSR with PID 2812 (F:\talk\target\classes started by xixi-98 in F:\talk)
+2019-12-31 15:07:33.219  INFO 2812 --- [restartedMain] com.xixi.person.talk.TalkApplication     : No active profile set, falling back to default profiles: default
+2019-12-31 15:07:34.621  WARN 2812 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2019-12-31 15:07:34.771  INFO 2812 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8018 (http)
+2019-12-31 15:07:34.772  INFO 2812 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-31 15:07:34.773  INFO 2812 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2019-12-31 15:07:34.832  INFO 2812 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-31 15:07:34.833  INFO 2812 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1609 ms
+2019-12-31 15:07:35.305  INFO 2812 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-31 15:07:35.334  INFO 2812 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-12-31 15:07:35.464  INFO 2812 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2019-12-31 15:07:35.485  INFO 2812 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8018 (http) with context path ''
+2019-12-31 15:07:35.486  INFO 2812 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Started TalkApplication in 2.317 seconds (JVM running for 126.29)
+2019-12-31 15:07:35.487  INFO 2812 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2019-12-31 15:07:38.133  INFO 2812 --- [Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

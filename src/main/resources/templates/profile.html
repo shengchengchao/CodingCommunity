@@ -50,7 +50,7 @@
                             <a th:href="@{'/notification/'+ ${notification.id}}"
                                th:text="${notification.outerTitle}">
                             </a>
-                            <span class="label label-danger" th:if="${notification.status == 0}">未读</span>
+                            <span class="label label-danger" th:if="${notification.status == 3}">未读</span>
                         </p>
                     </div>
                 </div>
@@ -102,5 +102,6 @@
         </div>
     </div>
 </div>
+<div th:insert="~{footer :: foot}"></div>
 </body>
 </html>

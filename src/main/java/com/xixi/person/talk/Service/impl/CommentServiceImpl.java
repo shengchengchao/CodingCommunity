@@ -53,6 +53,7 @@ public class CommentServiceImpl implements CommentService{
             //回复评论 先查询评论是否存在
             Comment parentComment = commentMapper.selectByPrimaryKey(comment.getParentId());
             if(parentComment !=null && ! parentComment.equals("")){
+                comment.setCommentCount(0);
                 commentMapper.insert(comment);
                 Comment comment1=new Comment();
                 comment1.setCommentCount(1);
@@ -111,6 +112,10 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public void createNotification(User user,Long outerid,String title,Long receiverId,NotificationEnum type) {
+        //自己评论自己就不通知
+        if(receiverId==user.getAccountId()){
+            return ;
+        }
         Notification record = new Notification();
         record.setGmtCreate(System.currentTimeMillis());
         record.setNotifier(user.getAccountId());
