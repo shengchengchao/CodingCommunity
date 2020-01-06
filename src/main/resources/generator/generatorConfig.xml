@@ -42,6 +42,6 @@
         <!--</table>-->
         <!--<table tableName="comment" domainObjectName="Comment" >-->
         <!--<table tableName="notification" domainObjectName="Notification" >-->
-        </table>
+        <!--</table>-->
     </context>
 </generatorConfiguration>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * @Auther: xixi-98
@@ -49,7 +50,13 @@ public class ProfileController {
         if("question".equals(action)){
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的提问");
-            PageInfo pageInfo=questionServiceImpl.selQuestionList(user.getAccountId(),size,page);
+            String search="";
+            PageInfo pageInfo= null;
+            try {
+                pageInfo = questionServiceImpl.selQuestionList(user.getAccountId(),size,page,search);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             model.addAttribute("pageInfo",pageInfo);
         }else if("replies".equals(action)){
             model.addAttribute("section","replies");

@@ -2,8 +2,10 @@ package com.xixi.person.talk.Controller;
 
 import com.xixi.person.talk.Service.QuestionService;
 
+import com.xixi.person.talk.Service.SearchQueService;
 import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.dto.TagCache;
+import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,8 @@ public class PublishController {
 
     @Resource
     private QuestionService questionServiceImpl;
-    
+    @Resource
+    private SearchQueService searchQueServiceImpl;
     /**
     * @Description: 初始发布问题页面
     * @Param: 
@@ -60,18 +63,19 @@ public class PublishController {
         model.addAttribute("tag",questionDto.getTag());
         model.addAttribute("tags", TagCache.get());
 
-        if (questionDto.getTitle() == null || questionDto.getTitle().equals("")){
+        if (StringUtils.isBlank(questionDto.getTitle())){
             model.addAttribute("error","标题不能为空");
             return "publish";
         }
-        if (questionDto.getDescription() == null ||questionDto.getDescription().equals("")){
+        if (StringUtils.isBlank(questionDto.getDescription())){
             model.addAttribute("error","内容补充不能为空");
             return "publish";
         }
-        if (questionDto.getTag() == null || questionDto.getTag().equals("")){
+        if (StringUtils.isBlank(questionDto.getTag())){
             model.addAttribute("error","标签不能为空");
             return "publish";
         }
+        //是否输入了非法标签
         String invalid = TagCache.filterInvalid(questionDto.getTag());
         if (StringUtils.isNotBlank(invalid)) {
             model.addAttribute("error", "输入非法标签:" + invalid);
@@ -79,16 +83,20 @@ public class PublishController {
         }
         //对于 中文的，进行替换、 使用标签库之后 可以简化对其进行简化，但仍存在手动输入的问题
         String tag = questionDto.getTag().replaceAll("，", ",");
-
         questionDto.setTag(tag);
         //先判断用户是否进行了登录 未登录就显示错误
         User user = (User) session.getAttribute("user");
+        //判断用户是否登陆
         if(user != null && !user.equals("")){
             if(questionDto.getId() != null && !questionDto.getId().equals("")){
-                // 将使用id查询出的QuestionDto 与session中的用户id进行比较  防止 非提问者对问题进行篡改 跳转index页面 使cookies失效
+                // 将使用id查询出的QuestionDto 与session中的用户id进行比较  防止非提问者对问题进行篡改 跳转index页面 使cookies失效
                 QuestionDto selectQuestion = questionServiceImpl.selQuestionByid(questionDto.getId());
+                //用户id与问题提问者id相同就表明要编辑问题
                 if (user.getAccountId().equals(selectQuestion.getCreatorId())){
-                    questionServiceImpl.updateQuestion(questionDto);
+                    //编辑问题
+                    Question question = questionServiceImpl.updateQuestion(questionDto);
+
+                    searchQueServiceImpl.put(question);
                 }else{
                     model.addAttribute("error","请重新登录");
                     request.getSession().removeAttribute("user");
@@ -97,8 +105,12 @@ public class PublishController {
                     response.addCookie(cookie);
                 }
             }else{
+                //新建问题
                 questionDto.setUser(user);
-                questionServiceImpl.insquestion(questionDto);
+                Question insquestion = questionServiceImpl.insquestion(questionDto);
+                //更新es
+                searchQueServiceImpl.put(insquestion);
+
             }
         }else{
             model.addAttribute("error","用户未登录，请点击登录");

@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.model.Question;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    void  insquestion(QuestionDto questionDto);
+    Question  insquestion(QuestionDto questionDto);
     
     /**
     * @Description: 为了获得user表的avatar_url数据 ，查询所有的QuestionDto数据,要使用业务装配的方式完成，
@@ -31,7 +32,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    PageInfo selQuestionList(Long accountid,int size, int page);
+    PageInfo selQuestionList(Long accountid,int size, int page,String search) throws IOException;
 
 
     
@@ -51,7 +52,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/21
     */
-    void updateQuestion(QuestionDto questionDto);
+    Question updateQuestion(QuestionDto questionDto);
     
     /**
     * @Description: 添加问题浏览量

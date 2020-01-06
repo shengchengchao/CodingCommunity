@@ -2,6 +2,7 @@ package com.xixi.person.talk.Controller;
 
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.Service.QuestionService;
+import com.xixi.person.talk.Service.SearchQueService;
 import com.xixi.person.talk.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 
 @Controller
@@ -20,6 +22,8 @@ public class IndexController {
     private UserService userServiceImpl;
     @Resource
     private QuestionService questionServiceImpl;
+
+
     /**
     * @Description: 登录的第一个controller
     * @Param: null
@@ -30,10 +34,17 @@ public class IndexController {
     @GetMapping("/index")
     public  String login( HttpSession session, Model model,
                          @RequestParam(defaultValue = "3") int size,
-                         @RequestParam(defaultValue = "1") int page){
+                         @RequestParam(defaultValue = "1") int page,
+     @RequestParam(name = "search", required = false) String search){
+
         Long id=0L;
         //查询出当前页数据，填充列表数据
-        PageInfo pageInfo = questionServiceImpl.selQuestionList(id,size, page);
+        PageInfo pageInfo = null;
+        try {
+            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         model.addAttribute("pageInfo",pageInfo);
 
         return "/index";

@@ -1,132 +1,14 @@
-2019-12-31 15:02:43.124  INFO 3828 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Starting TalkApplication on LAPTOP-QEAENHSR with PID 3828 (F:\talk\target\classes started by xixi-98 in F:\talk)
-2019-12-31 15:02:43.125  INFO 3828 --- [restartedMain] com.xixi.person.talk.TalkApplication     : No active profile set, falling back to default profiles: default
-2019-12-31 15:02:43.762  WARN 3828 --- [restartedMain] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2019-12-31 15:02:43.902  INFO 3828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8018 (http)
-2019-12-31 15:02:43.902  INFO 3828 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-12-31 15:02:43.903  INFO 3828 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-2019-12-31 15:02:43.947  INFO 3828 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-12-31 15:02:43.947  INFO 3828 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 817 ms
-2019-12-31 15:02:44.162  INFO 3828 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-12-31 15:02:44.179  INFO 3828 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2019-12-31 15:02:44.320  INFO 3828 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2019-12-31 15:02:44.334  INFO 3828 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8018 (http) with context path ''
-2019-12-31 15:02:44.334  INFO 3828 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Started TalkApplication in 1.299 seconds (JVM running for 351.968)
-2019-12-31 15:02:44.335  INFO 3828 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
-2019-12-31 15:05:18.514  INFO 3828 --- [Thread-14] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2019-12-31 15:07:38.834  INFO 2812 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Starting TalkApplication on LAPTOP-QEAENHSR with PID 2812 (F:\talk\target\classes started by xixi-98 in F:\talk)
-2019-12-31 15:07:38.839  INFO 2812 --- [restartedMain] com.xixi.person.talk.TalkApplication     : No active profile set, falling back to default profiles: default
-2019-12-31 15:10:21.267  INFO 14108 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Starting TalkApplication on LAPTOP-QEAENHSR with PID 14108 (F:\talk\target\classes started by xixi-98 in F:\talk)
-2019-12-31 15:10:21.274  INFO 14108 --- [restartedMain] com.xixi.person.talk.TalkApplication     : No active profile set, falling back to default profiles: default
-2019-12-31 15:10:21.349  INFO 14108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2019-12-31 15:10:21.350  INFO 14108 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2019-12-31 15:10:22.749  INFO 14108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8018 (http)
-2019-12-31 15:10:22.757  INFO 14108 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-12-31 15:10:22.757  INFO 14108 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-2019-12-31 15:10:22.896  INFO 14108 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-12-31 15:10:22.896  INFO 14108 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1546 ms
-2019-12-31 15:10:23.710  INFO 14108 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-12-31 15:10:23.819  INFO 14108 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
-2019-12-31 15:10:24.065  INFO 14108 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2019-12-31 15:10:24.112  INFO 14108 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8018 (http) with context path ''
-2019-12-31 15:10:24.115  INFO 14108 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Started TalkApplication in 3.52 seconds (JVM running for 5.528)
-2019-12-31 15:10:31.848  INFO 14108 --- [http-nio-8018-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-12-31 15:10:31.848  INFO 14108 --- [http-nio-8018-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-12-31 15:10:31.857  INFO 14108 --- [http-nio-8018-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
-2019-12-31 15:10:31.980 ERROR 14108 --- [http-nio-8018-exec-1] com.alibaba.druid.pool.DruidDataSource   : testWhileIdle is true, validationQuery not set
-2019-12-31 15:10:31.990  INFO 14108 --- [http-nio-8018-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
-2019-12-31 15:10:32.909 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:32.941 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:32.980 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:32.989 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:32.990 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:33.002 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:33.043 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.updatevicwConunt             : ==>  Preparing: update question set view_count = view_count+? where id = ? 
-2019-12-31 15:10:33.043 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.updatevicwConunt             : ==> Parameters: 1(Integer), 60(Long)
-2019-12-31 15:10:33.147 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.updatevicwConunt             : <==    Updates: 1
-2019-12-31 15:10:33.163 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByExampleWithBLOBs     : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator_id, comment_count, view_count, like_count, tag , description from question WHERE ( id = ? ) 
-2019-12-31 15:10:33.163 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByExampleWithBLOBs     : ==> Parameters: 60(Long)
-2019-12-31 15:10:33.173 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByExampleWithBLOBs     : <==      Total: 1
-2019-12-31 15:10:33.178 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( account_id = ? ) 
-2019-12-31 15:10:33.179 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 49709991(Long)
-2019-12-31 15:10:33.180 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:33.205 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.CommentMapper.selectByExample  : ==>  Preparing: select id, parent_id, type, commentator, gmt_create, gmt_modified, like_count, content, comment_count from comment WHERE ( parent_id = ? and type = ? ) order by gmt_create desc 
-2019-12-31 15:10:33.205 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.CommentMapper.selectByExample  : ==> Parameters: 60(Long), 1(Integer)
-2019-12-31 15:10:33.297 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.CommentMapper.selectByExample  : <==      Total: 0
-2019-12-31 15:10:33.298 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByPrimaryKey           : ==>  Preparing: select id, title, gmt_create, gmt_modified, creator_id, comment_count, view_count, like_count, tag , description from question where id = ? 
-2019-12-31 15:10:33.299 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByPrimaryKey           : ==> Parameters: 60(Long)
-2019-12-31 15:10:33.306 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selectByPrimaryKey           : <==      Total: 1
-2019-12-31 15:10:33.308 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selQuestionTag               : ==>  Preparing: select id,title,tag from question WHERE id !=? and tag REGEXP ? 
-2019-12-31 15:10:33.309 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selQuestionTag               : ==> Parameters: 60(Long), php(String)
-2019-12-31 15:10:33.320 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.Q.selQuestionTag               : <==      Total: 0
-2019-12-31 15:10:34.045 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.046 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.052 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.053 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.053 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.056 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.057 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.058 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.073 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.073 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.074 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.075 DEBUG 14108 --- [http-nio-8018-exec-3] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.075 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.075 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.078 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.080 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.081 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.085 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.087 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.088 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.091 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.092 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.094 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.096 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.099 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.102 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.107 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.109 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.110 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.112 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.115 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.116 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.118 DEBUG 14108 --- [http-nio-8018-exec-5] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.122 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.122 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.124 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.125 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.129 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.132 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.136 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.137 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.138 DEBUG 14108 --- [http-nio-8018-exec-10] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.139 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.139 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.142 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.143 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.143 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.145 DEBUG 14108 --- [http-nio-8018-exec-6] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.147 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.148 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.150 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.155 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.155 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.157 DEBUG 14108 --- [http-nio-8018-exec-9] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.158 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.159 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.158 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.162 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.164 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.165 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.166 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.169 DEBUG 14108 --- [http-nio-8018-exec-7] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.170 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.171 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.174 DEBUG 14108 --- [http-nio-8018-exec-1] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.182 DEBUG 14108 --- [http-nio-8018-exec-8] c.x.p.t.m.N.countByExample               : <==      Total: 1
-2019-12-31 15:10:34.320 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : ==>  Preparing: select id, account_id, name, token, create_date, update_date, bio, avatar_url from user WHERE ( token = ? ) 
-2019-12-31 15:10:34.321 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : ==> Parameters: 7a490184-d4f8-41e7-88a4-81726818736b(String)
-2019-12-31 15:10:34.352 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.UserMapper.selectByExample     : <==      Total: 1
-2019-12-31 15:10:34.354 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : ==>  Preparing: select count(*) from notification WHERE ( notifier = ? and status = ? ) 
-2019-12-31 15:10:34.354 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : ==> Parameters: 49709991(Long), 3(Integer)
-2019-12-31 15:10:34.371 DEBUG 14108 --- [http-nio-8018-exec-4] c.x.p.t.m.N.countByExample               : <==      Total: 1
+2020-01-05 09:37:21.640  INFO 13644 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Starting TalkApplication on LAPTOP-QEAENHSR with PID 13644 (F:\talk\target\classes started by xixi-98 in F:\talk)
+2020-01-05 09:37:21.649  INFO 13644 --- [restartedMain] com.xixi.person.talk.TalkApplication     : No active profile set, falling back to default profiles: default
+2020-01-05 09:37:21.756  INFO 13644 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-01-05 09:37:21.757  INFO 13644 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-01-05 09:37:25.577  INFO 13644 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8018 (http)
+2020-01-05 09:37:25.587  INFO 13644 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-05 09:37:25.587  INFO 13644 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+2020-01-05 09:37:25.911  INFO 13644 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-05 09:37:25.912  INFO 13644 --- [restartedMain] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 4080 ms
+2020-01-05 09:37:27.143  INFO 13644 --- [restartedMain] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-01-05 09:37:27.222  INFO 13644 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-01-05 09:37:28.522  INFO 13644 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2020-01-05 09:37:28.561  INFO 13644 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8018 (http) with context path ''
+2020-01-05 09:37:28.563  INFO 13644 --- [restartedMain] com.xixi.person.talk.TalkApplication     : Started TalkApplication in 7.613 seconds (JVM running for 9.744)
