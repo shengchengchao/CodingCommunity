@@ -1,5 +1,6 @@
 package com.xixi.person.talk.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @Date: 2019/12/27 16:35
  * @Description:
  */
-public class TagDTO {
+public class TagDTO implements Serializable {
     private String categoryName;
     private List<String> tags;
 

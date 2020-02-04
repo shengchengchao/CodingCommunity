@@ -1,4 +1,18 @@
-
+## 主要技术栈
+- spring boot
+- mybatis
+- Thymeleaf
+- redis
+- bootstrap
+- mysql
+- elasticsearch
+ 
+ ## 项目描述
+ 码农问答社区是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch,未来会加入rabbitMQ做消息服务。  
+ 使用github OAuth2作为第三方登录入口  
+ 使用ealsticsearch作为检索引擎  
+ 使用redis作为缓存引擎
+ 
 ## 疑难点
    [github OAuth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
    1. 关于github OAuth认证，这是一种调用githun第三方认证的技术，github中有API与文档的说明

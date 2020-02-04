@@ -3,8 +3,8 @@ package com.xixi.person.talk.Controller;
 import com.xixi.person.talk.Service.QuestionService;
 
 import com.xixi.person.talk.Service.SearchQueService;
+import com.xixi.person.talk.Service.TagCacheService;
 import com.xixi.person.talk.dto.QuestionDto;
-import com.xixi.person.talk.dto.TagCache;
 import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +31,8 @@ public class PublishController {
     private QuestionService questionServiceImpl;
     @Resource
     private SearchQueService searchQueServiceImpl;
+    @Resource
+    private TagCacheService tagCacheServiceImpl;
     /**
     * @Description: 初始发布问题页面
     * @Param: 
@@ -42,7 +44,7 @@ public class PublishController {
     public String publish(Model model,QuestionDto questionDto){
 
         model.addAttribute("questionDto",questionDto);
-        model.addAttribute("tags", TagCache.get());
+        model.addAttribute("tags", tagCacheServiceImpl.get());
         return "publish";
     }
 
@@ -61,7 +63,7 @@ public class PublishController {
         model.addAttribute("title",questionDto.getTitle());
         model.addAttribute("description",questionDto.getDescription());
         model.addAttribute("tag",questionDto.getTag());
-        model.addAttribute("tags", TagCache.get());
+        model.addAttribute("tags", tagCacheServiceImpl.get());
 
         if (StringUtils.isBlank(questionDto.getTitle())){
             model.addAttribute("error","标题不能为空");
@@ -76,7 +78,7 @@ public class PublishController {
             return "publish";
         }
         //是否输入了非法标签
-        String invalid = TagCache.filterInvalid(questionDto.getTag());
+        String invalid = tagCacheServiceImpl.filterInvalid(questionDto.getTag());
         if (StringUtils.isNotBlank(invalid)) {
             model.addAttribute("error", "输入非法标签:" + invalid);
             return "publish";

@@ -36,8 +36,8 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <!--<table tableName="user" domainObjectName="User">-->
-        <!--</table>-->
+            <table tableName="tagcache" domainObjectName="Tagcache">
+        </table>
         <!--<table tableName="question" domainObjectName="Question" >-->
         <!--</table>-->
         <!--<table tableName="comment" domainObjectName="Comment" >-->
