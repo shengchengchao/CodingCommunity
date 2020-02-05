@@ -46,7 +46,12 @@
        -  编辑问题页面与发布页面为相同页面，不同的是编辑问题有一个id的隐藏域，我们首先需要判断登录状态，
        -  其次根据id判断是在发布问题，还是更新问题，其次判断该id的创建者是否为登录用户
        -  最后对问题进行修改与新增
-        
+  
+## Linux运行步骤
+-开启es  su - elasticsearch /usr/local/tmp/elasticsearch-6.8.2/bin/elasticsearch
+-编译 mvn compile package
+-打包 mvn package
+-运行 java -jar -Dspring.profiles.active=production talk-0.0.1-SNAPSHOT.jar    
 ## 更新记录   
 ##### 2020-2-5更新
 本次更新版本：v202-2-5  

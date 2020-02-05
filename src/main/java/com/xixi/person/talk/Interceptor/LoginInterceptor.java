@@ -27,16 +27,18 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         Cookie[] cookies = request.getCookies();
         User user=new User();
-        for (Cookie cookie : cookies) {
-            if(cookie.getName().equals("token")){
-                String token = cookie.getValue();
-                user = userServiceImpl.selUser(token);
-                if(user != null && !user.equals("")){
-                    request.getSession().setAttribute("user",user);
-                    int unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
-                    request.getSession().setAttribute("unreadCount", unreadCount);
+        if(cookies!=null && cookies.length!=0){
+            for (Cookie cookie : cookies) {
+                if(cookie.getName().equals("token")){
+                    String token = cookie.getValue();
+                    user = userServiceImpl.selUser(token);
+                    if(user != null && !user.equals("")){
+                        request.getSession().setAttribute("user",user);
+                        int unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
+                        request.getSession().setAttribute("unreadCount", unreadCount);
+                    }
+                    break;
                 }
-                break;
             }
         }
         return true;
