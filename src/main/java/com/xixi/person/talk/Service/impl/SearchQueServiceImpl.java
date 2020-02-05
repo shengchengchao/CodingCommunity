@@ -86,8 +86,6 @@ public class SearchQueServiceImpl implements SearchQueService {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     /**

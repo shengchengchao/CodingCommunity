@@ -1,5 +1,6 @@
 package com.xixi.person.talk.Controller;
 
+import com.xixi.person.talk.Service.FileUploadService;
 import com.xixi.person.talk.dto.FileDto;
 
 
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.util.UUID;
 
 /**
  * @Auther: xixi-98
@@ -21,6 +24,8 @@ import java.io.File;
  */
 @Controller
 public class fileController {
+    @Resource
+    private FileUploadService fileUploadServiceImpl;
     @RequestMapping("/file/upload")
     @ResponseBody
     public FileDto upload(HttpServletRequest request, HttpServletResponse response,
@@ -29,26 +34,14 @@ public class fileController {
 
         FileDto fileDTO = new FileDto();
         try {
-            request.setCharacterEncoding("utf-8");
-            response.setHeader("Content-Type", "text/html");
-            String rootPath = "F:/talk/src/main/resources/static/images";
-
-            /**
-             * 文件路径不存在则需要创建文件路径
-             */
-            File filePath = new File(rootPath);
-            if (!filePath.exists()) {
-                filePath.mkdirs();
+            String FileName= UUID.randomUUID()+attach.getOriginalFilename().substring(attach.getOriginalFilename().lastIndexOf("."));
+            boolean result = fileUploadServiceImpl.upload(attach,FileName);
+            if(result){
+                // 下面response返回的json格式是editor.md所限制的，规范输出就OK
+                fileDTO.setSuccess(1);
+                fileDTO.setUrl("http://121.36.26.52/"+FileName);
+                fileDTO.setMessage("上传成功");
             }
-            // 最终文件名
-            File realFile = new File(rootPath + File.separator + attach.getOriginalFilename());
-
-            FileUtils.copyInputStreamToFile(attach.getInputStream(), realFile);
-            // 下面response返回的json格式是editor.md所限制的，规范输出就OK
-            fileDTO.setSuccess(1);
-
-            fileDTO.setUrl("/images/"+attach.getOriginalFilename());
-            fileDTO.setMessage("上传成功");
         } catch (Exception e) {
             fileDTO.setSuccess(0);
         }
