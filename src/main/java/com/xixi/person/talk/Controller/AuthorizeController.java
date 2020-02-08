@@ -7,6 +7,7 @@ import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +31,8 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
     @Resource
     private UserService userServiceImpl;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Value("${AccessTokenfdto.Client_id}")
     private String Client_id;
@@ -85,8 +88,10 @@ public class AuthorizeController {
     }
     @GetMapping("/logout")
     public String logout(HttpServletRequest request,
-                         HttpServletResponse response) {
+                         HttpServletResponse response,HttpSession session) {
+        User user = (User) session.getAttribute("user");
         request.getSession().removeAttribute("user");
+        redisTemplate.delete(user.getToken());
         Cookie cookie = new Cookie("token", null);
         cookie.setMaxAge(0);
         response.addCookie(cookie);

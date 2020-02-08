@@ -1,3 +1,6 @@
+##在线预览
+[问答社区](http://121.36.26.52:8080/index)
+
 ## 主要技术栈
 - spring boot
 - mybatis
@@ -8,7 +11,7 @@
 - elasticsearch
  
  ## 项目描述
- 码农问答社区是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch,未来会加入rabbitMQ做消息服务。  
+ [码农问答社区](http://121.36.26.52:8080/index)是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch,未来会加入rabbitMQ做消息服务。  
  使用github OAuth2作为第三方登录入口  
  使用ealsticsearch作为检索引擎  
  使用redis作为缓存引擎
