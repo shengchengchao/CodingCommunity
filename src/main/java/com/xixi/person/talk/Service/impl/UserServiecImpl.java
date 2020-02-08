@@ -38,22 +38,22 @@ public class UserServiecImpl implements UserService {
     @Override
     @Transactional
     public void insUser(User user) {
-        //查询所有的use用户
-        List<User> users = userMapper.selectByExample(new UserExample());
-        if(users.size() != 0){
-            for (User u : users) {
-                //id相同 表明是同一个用户 我们需要token与更新时间
-                if(u.getAccountId().equals(user.getAccountId())){
-                    user.setUpdateDate(System.currentTimeMillis());
-                    UserExample example = new UserExample();
-                    example.createCriteria().andIdEqualTo(u.getId());
-                    userMapper.updateByExampleSelective(user,example);
-                    break;
-                }
-            }
-        }else{
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andAccountIdEqualTo(user.getAccountId());
+        List<User> users = userMapper.selectByExample(userExample);
+        if (users.size() == 0) {
+           //插入数据
             userMapper.insert(user);
+        } else {
+            //更新
+            User dbUser = users.get(0);
+            user.setUpdateDate(System.currentTimeMillis());
+            UserExample example = new UserExample();
+            example.createCriteria().andIdEqualTo(dbUser.getId());
+            userMapper.updateByExampleSelective(user,example);
         }
+
         //插入redis
         String useString= JSONObject.toJSONString(user);
         String tokens=String.valueOf(user.getToken());

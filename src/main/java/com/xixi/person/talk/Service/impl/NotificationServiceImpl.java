@@ -37,7 +37,7 @@ public class NotificationServiceImpl implements NotificationService {
         notificationExample.setOrderByClause("gmt_create desc");
         //判断accountId是否存在
         if(accountId != 0L){
-            notificationExample.createCriteria().andNotifierEqualTo(accountId);
+            notificationExample.createCriteria().andReceiverEqualTo(accountId);
         }
         //问题总数
         List<Notification> notifications = notificationMapper.selectByExample(notificationExample);

@@ -49,7 +49,7 @@
                 <ul class="pagination">
                     <!-- 显示第一页图标 <<-->
                     <li th:unless="${pageInfo.isFirstPage}">
-                        <a th:href="@{/(page=1,search=${search})}" aria-label="Previous">
+                        <a th:href="@{/index(page=1,search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>

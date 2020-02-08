@@ -64,7 +64,7 @@ public class PublishController {
         model.addAttribute("description",questionDto.getDescription());
         model.addAttribute("tag",questionDto.getTag());
         model.addAttribute("tags", tagCacheServiceImpl.get());
-
+        System.out.println(questionDto.toString());
         if (StringUtils.isBlank(questionDto.getTitle())){
             model.addAttribute("error","标题不能为空");
             return "publish";

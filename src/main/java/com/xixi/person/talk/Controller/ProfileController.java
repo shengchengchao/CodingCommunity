@@ -47,7 +47,7 @@ public class ProfileController {
         if (user == null || user.equals("")){
             return "index";
         }
-        if("questions".equals(action)){
+        if("question".equals(action)){
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的提问");
             String search="";

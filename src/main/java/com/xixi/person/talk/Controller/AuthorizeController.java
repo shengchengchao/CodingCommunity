@@ -72,7 +72,7 @@ public class AuthorizeController {
             user.setCreateDate(System.currentTimeMillis());
             user.setUpdateDate(user.getCreateDate());
             user.setBio(githubuser.getBio());
-
+            System.out.println(user.toString());
             userServiceImpl.insUser(user);
             //存放到cookies中
             Cookie cookie=new Cookie("token",token);
