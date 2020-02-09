@@ -45,7 +45,7 @@ public class ProfileController {
 
         User user = (User) session.getAttribute("user");
         if (user == null || user.equals("")){
-            return "index";
+            return "redirect:/index";
         }
         if("question".equals(action)){
             model.addAttribute("section","questions");
