@@ -1,4 +1,4 @@
-package com.xixi.person.talk.provider;
+package com.xixi.person.talk.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.xixi.person.talk.dto.AccessTokendto;

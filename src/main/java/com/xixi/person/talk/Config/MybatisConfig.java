@@ -1,4 +1,4 @@
-package com.xixi.person.talk.Interceptor;
+package com.xixi.person.talk.Config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;

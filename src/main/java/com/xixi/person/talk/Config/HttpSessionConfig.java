@@ -1,4 +1,4 @@
-package com.xixi.person.talk.Interceptor;
+package com.xixi.person.talk.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

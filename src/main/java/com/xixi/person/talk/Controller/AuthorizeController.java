@@ -4,7 +4,7 @@ import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.dto.AccessTokendto;
 import com.xixi.person.talk.dto.GithubUserdto;
 import com.xixi.person.talk.model.User;
-import com.xixi.person.talk.provider.GithubProvider;
+import com.xixi.person.talk.utils.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;

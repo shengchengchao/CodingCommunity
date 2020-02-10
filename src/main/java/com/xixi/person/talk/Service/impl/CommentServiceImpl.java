@@ -8,7 +8,9 @@ import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.mapper.*;
 import com.xixi.person.talk.model.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +39,8 @@ public class CommentServiceImpl implements CommentService{
     private CommentextraMapper commentextraMapper;
     @Resource
     private NotificationMapper notificationMapper;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Override
     @Transactional
@@ -125,7 +129,7 @@ public class CommentServiceImpl implements CommentService{
         record.setStatus(NotificationEnum.UEREAD.getType());
         record.setType(type.getType());
         record.setOuterid(outerid);
-        notificationMapper.insert(record);
 
+        rabbitTemplate.convertAndSend("exchange.direct","notification",record);
     }
 }

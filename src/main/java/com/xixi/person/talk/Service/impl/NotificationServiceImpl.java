@@ -11,7 +11,9 @@ import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.mapper.NotificationMapper;
 import com.xixi.person.talk.mapper.UserMapper;
 import com.xixi.person.talk.model.*;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,7 +32,10 @@ public class NotificationServiceImpl implements NotificationService {
     @Resource
     private UserMapper userMapper;
 
+
+
     public  PageInfo selNotificationList(Long accountId, int size, int page) {
+
         //查询出当前页 问题
         PageHelper.startPage(page,size);
         NotificationExample notificationExample=new NotificationExample();

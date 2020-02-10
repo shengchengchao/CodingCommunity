@@ -9,6 +9,7 @@
 - bootstrap
 - mysql
 - elasticsearch
+- RabbitMQ
  
  ## 项目描述
  [码农问答社区](http://121.36.26.52:8080/index)是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch,未来会加入rabbitMQ做消息服务。  
@@ -48,8 +49,14 @@
        -  首先在我的问题页面点击问题标题，可以跳转，先经过拦截器判断是否登录
        -  编辑问题页面与发布页面为相同页面，不同的是编辑问题有一个id的隐藏域，我们首先需要判断登录状态，
        -  其次根据id判断是在发布问题，还是更新问题，其次判断该id的创建者是否为登录用户
-       -  最后对问题进行修改与新增
-  
+       -  最后对问题进行修改与新增  
+##### 异常处理
+1.    要完成对于异常的处理，最少需要一个集合QuestionErrorCodeEnum.class对于所有可能发生的异常进行包装
+2.    一个自定义的异常类继承了RuntimeException.class
+3.    一个类MyExceptionHandler添加@ControllerAdvice 自定义一个方法handler添加 @ExceptionHandler 来捕获所有发生的异常，返回值是返回给客户端的类。 该注解在捕获异常时会优先寻找最合适的异常。
+ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
+4. 一个类来返回给客户端具体的异常对象。
+5.    在可能出现异常的位置抛出自定义异常类
 ## Linux运行步骤
 - 开启es  su - elasticsearch /usr/local/tmp/elasticsearch-6.8.2/bin/elasticsearch
 - 编译 mvn compile package
@@ -57,8 +64,12 @@
 - 运行 java -jar -Dspring.profiles.active=production target/talk-0.0.1-SNAPSHOT.jar    
 ## 更新记录   
 ##### 2020-2-5更新
-本次更新版本：v202-2-5  
-  使用nginx完成图片的上传服务
+本次更新版本：v2020-2-5  
+  使用nginx完成图片的上传服务   
+  
+  ##### 2020-2-10更新
+  本次更新版本：v2020-2-10  
+    使用RabbitMQ完成了消息通知
                
  
             

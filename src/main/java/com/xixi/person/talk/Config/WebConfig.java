@@ -1,5 +1,6 @@
-package com.xixi.person.talk.Interceptor;
+package com.xixi.person.talk.Config;
 
+import com.xixi.person.talk.Interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
