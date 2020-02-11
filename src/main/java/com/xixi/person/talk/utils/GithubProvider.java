@@ -18,7 +18,7 @@ import java.io.IOException;
 public class GithubProvider {
 
     /**
-    * @Description:  使用okHTTP来模拟客户端访问github浏览器 获得accesstoken 信息
+    * @Description:  使用okHTTP来模拟客户端访问github浏览器获得accesstoken 信息   令牌
     * @Param: accessTokendto
     * @return: accesstoken
     * @Author: xixi
@@ -43,7 +43,7 @@ public class GithubProvider {
     }
 
     /**
-    * @Description: 根据 accesstoken 中获得的数据从github中获得到对于的用户信息。 还是使用okhttp的 get请求
+    * @Description: 根据 accesstoken令牌 中获得的数据从github中获得到对应的用户信息。 还是使用okhttp的 get请求
     * @Param:
     * @return:
     * @Author: xixi

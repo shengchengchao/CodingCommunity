@@ -1,5 +1,6 @@
 package com.xixi.person.talk.Controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.dto.AccessTokendto;
 import com.xixi.person.talk.dto.GithubUserdto;
@@ -42,11 +43,11 @@ public class AuthorizeController {
     private String Redirect_uri;
 
     /**
-    * @Description:  站点得到github回传的信息，包含code 与stateAccessTokendto
+    * @Description:  站点得到github回传的信息，包含code与stateAccessTokendto
      * 用来装配站点再次访问github中需要的数据。可以考虑使用软编码配合构造方法去完成对应内容的注入
      *  将对象注入到作为参数传递为githubProvider 进行模拟浏览器客户端的post请求。  githubProvider返回一个accesstoken的信息
      *  将信息传递给githubProvider 调用方法模拟浏览器客户端的get请求，获得用户信息
-    * @Param:  code state
+    * @Param:  code 授权码 state
     * @return: index.html 返回初始登录界面
     * @Author: xixi
     * @Date: 2019/12/16
@@ -68,18 +69,19 @@ public class AuthorizeController {
             User user = new User();
 
             user.setAvatarUrl(githubuser.getAvatar_Url());
-
             user.setAccountId(githubuser.getId());
             user.setName(githubuser.getName());
             user.setToken(token);
             user.setCreateDate(System.currentTimeMillis());
             user.setUpdateDate(user.getCreateDate());
             user.setBio(githubuser.getBio());
-            System.out.println(user.toString());
             userServiceImpl.insUser(user);
             //存放到cookies中
             Cookie cookie=new Cookie("token",token);
             response.addCookie(cookie);
+            String userJson = JSONObject.toJSONString(user);
+            redisTemplate.opsForValue().set(token,userJson);
+
             return "redirect:/index";
         }else{
             return "redirect:/index";

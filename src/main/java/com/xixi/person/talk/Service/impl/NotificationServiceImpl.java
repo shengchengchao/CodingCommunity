@@ -14,6 +14,7 @@ import com.xixi.person.talk.model.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -31,7 +32,8 @@ public class NotificationServiceImpl implements NotificationService {
     private NotificationMapper notificationMapper;
     @Resource
     private UserMapper userMapper;
-
+    @Autowired
+    private RedisTemplate redisTemplate;
 
 
     public  PageInfo selNotificationList(Long accountId, int size, int page) {
@@ -80,6 +82,12 @@ public class NotificationServiceImpl implements NotificationService {
         }
         notification.setStatus(NotificationEnum.READ.getType());
         notificationMapper.updateByPrimaryKey(notification);
+        Integer unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
+        if (unreadCount == null){
+            unreadCount = this.unreadCount(notification.getReceiver());
+            redisTemplate.opsForValue().set("unreadCount",unreadCount);
+        }
+        redisTemplate.opsForValue().set("unreadCount",unreadCount-1);
         return notification;
     }
 }
