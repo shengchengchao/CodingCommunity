@@ -59,6 +59,7 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional
     public PageInfo selQuestionList(Long accountId,int size, int page,String search) throws IOException {
         List<SearchDto> searchDtoList = null;
         if(StringUtils.isNotBlank(search)&&!search.equals(",") ) {
@@ -110,13 +111,14 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
+    @Transactional
     public QuestionDto selQuestionByid(Long id) {
         QuestionDto questionDto=new QuestionDto();
 
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andIdEqualTo(id);
         List<Question> questions = questionMapper.selectByExampleWithBLOBs(questionExample);
-        if(questions==null){
+        if(questions.size()==0){
             throw new QuestionException(QuestionErrorCodeEnum.QUESTION_NOT_FOUND);
         }
         BeanUtils.copyProperties(questions.get(0),questionDto);

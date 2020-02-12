@@ -38,7 +38,7 @@ public class NotificationServiceImpl implements NotificationService {
 
     public  PageInfo selNotificationList(Long accountId, int size, int page) {
 
-        //查询出当前页 问题
+        //查询出当前页回复
         PageHelper.startPage(page,size);
         NotificationExample notificationExample=new NotificationExample();
         notificationExample.setOrderByClause("gmt_create desc");
@@ -46,7 +46,7 @@ public class NotificationServiceImpl implements NotificationService {
         if(accountId != 0L){
             notificationExample.createCriteria().andReceiverEqualTo(accountId);
         }
-        //问题总数
+        //回复总数
         List<Notification> notifications = notificationMapper.selectByExample(notificationExample);
         //查询出当前页问题，navugatepage是导航页
         PageInfo pageInfo=new PageInfo(notifications,5);

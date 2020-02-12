@@ -42,6 +42,14 @@ public class CommentServiceImpl implements CommentService{
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
+    
+    /**
+    * @Description: 根据类型添加评论
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2020/2/11
+    */
     @Override
     @Transactional
     public void insertComment(Comment comment, User user) {
@@ -110,7 +118,6 @@ public class CommentServiceImpl implements CommentService{
             commentDto.setUser(users.get(0));
             commentList.add(commentDto);
         }
-
         return commentList;
     }
 

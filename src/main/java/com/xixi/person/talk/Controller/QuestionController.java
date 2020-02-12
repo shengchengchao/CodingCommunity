@@ -5,6 +5,8 @@ import com.xixi.person.talk.Service.CommentService;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.dto.QuestionDto;
+import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
+import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Controller;
@@ -35,14 +37,10 @@ public class QuestionController {
     */
     @GetMapping("/question/{id}")
     public String question(QuestionDto question, HttpSession session, Model model){
-
-        User user = (User) session.getAttribute("user");
-        if (user == null || user.equals("")){
-            return "index";
-        }
-        questionServiceImpl.insviewCount(question.getId());
         //得到问题的信息
         QuestionDto questionDto=questionServiceImpl.selQuestionByid(question.getId());
+        //增加阅读数
+        questionServiceImpl.insviewCount(question.getId());
         //获得该问题下的评论
         List<CommentDto> commentDtos = commentServiceImpl.selCommentList(question.getId(), CommentTypeEnum.QUESTION);
         //获得与该问题标签相似的问题

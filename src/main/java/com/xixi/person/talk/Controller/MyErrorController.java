@@ -35,7 +35,6 @@ public class MyErrorController implements ErrorController {
         if (status.is5xxServerError()) {
             model.addAttribute("message", "服务冒烟了，要不然你稍后再试试！！！");
         }
-
         return new ModelAndView("error");
     }
 

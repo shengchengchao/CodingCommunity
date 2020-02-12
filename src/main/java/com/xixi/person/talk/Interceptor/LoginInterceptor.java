@@ -1,6 +1,7 @@
 package com.xixi.person.talk.Interceptor;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.dto.TagDTO;
@@ -28,25 +29,34 @@ public class LoginInterceptor implements HandlerInterceptor {
     private RedisTemplate redisTemplate;
     @Resource
     private NotificationService notificationServiceImpl;
+    @Resource
+    private UserService userServiceImpl;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
+        User user = (User)request.getSession().getAttribute("user");
+        Integer unreadCount = (Integer)request.getSession().getAttribute("unreadCount");
+        if(user!=null && !user.equals("") && unreadCount!= null ){
+            return true;
+        }
         Cookie[] cookies = request.getCookies();
         if(cookies!=null && cookies.length!=0){
             for (Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")){
                     String token = cookie.getValue();
                     String userStr = (String)redisTemplate.opsForValue().get(token);
-                    User user = JSON.parseObject(userStr, User.class);
-                    if(user != null && !user.equals("")){
-                        request.getSession().setAttribute("user",user);
-                        Integer unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
-                        if (unreadCount == null){
-                            unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
-                            redisTemplate.opsForValue().set("unreadCount",unreadCount);
-                        }
-                        request.getSession().setAttribute("unreadCount", unreadCount);
+                    user = JSON.parseObject(userStr, User.class);
+                    if(user == null){
+                        user = userServiceImpl.selUser(token);
+                        String useString= JSONObject.toJSONString(user);
+                        redisTemplate.opsForValue().set(token,useString);
                     }
+                    request.getSession().setAttribute("user",user);
+                    unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
+                    if (unreadCount == null){
+                        unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
+                        redisTemplate.opsForValue().set("unreadCount",unreadCount);
+                    }
+                    request.getSession().setAttribute("unreadCount", unreadCount);
                     break;
                 }
             }

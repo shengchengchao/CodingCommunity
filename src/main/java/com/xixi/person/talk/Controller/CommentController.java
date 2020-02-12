@@ -25,7 +25,14 @@ import java.util.List;
 public class CommentController {
     @Resource
     private CommentService commentServiceImpl;
-
+    
+    /**
+    * @Description: 添加评论
+    * @Param: comment request
+    * @return: 
+    * @Author: xixi
+    * @Date: 2020/2/11
+    */
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
     public Object addComment(@RequestBody Comment comment, HttpServletRequest request){
