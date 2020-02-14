@@ -3,7 +3,7 @@ package com.xixi.person.talk.dto;
 import org.springframework.data.annotation.Id;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2020/1/5 13:55
  * @Description:
  */

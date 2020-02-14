@@ -1,13 +1,13 @@
 package com.xixi.person.talk.Service.impl;
 
-import com.xixi.person.talk.Enum.CommentTypeEnum;
-import com.xixi.person.talk.Enum.NotificationEnum;
+import com.xixi.person.talk.enums.CommentTypeEnum;
+import com.xixi.person.talk.enums.NotificationEnum;
 import com.xixi.person.talk.Service.CommentService;
 import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
-import com.xixi.person.talk.mapper.*;
-import com.xixi.person.talk.model.*;
+import com.xixi.person.talk.Mapper.*;
+import com.xixi.person.talk.Model.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,7 +124,7 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public void createNotification(User user,Long outerid,String title,Long receiverId,NotificationEnum type) {
         //自己评论自己就不通知
-        if(receiverId==user.getAccountId()){
+        if(receiverId.equals(user.getAccountId())){
             return ;
         }
         Notification record = new Notification();

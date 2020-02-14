@@ -29,9 +29,9 @@ public class FileUploadServiceImpl implements FileUploadService {
     @Value("${ftpclient.filepath}")
     private String filePath;
     @Override
-    public boolean upload(MultipartFile imgFile,String FileName) throws IOException {
+    public boolean upload(MultipartFile imgFile,String fileName) throws IOException {
 
-        boolean result = FtpUtil.uploadFile(host, port, username, password, basePath, filePath, FileName, imgFile.getInputStream());
+        boolean result = FtpUtil.uploadFile(host, port, username, password, basePath, filePath, fileName, imgFile.getInputStream());
         return result;
     }
 }

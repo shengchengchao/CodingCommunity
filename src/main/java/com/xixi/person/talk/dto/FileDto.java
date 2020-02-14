@@ -1,7 +1,7 @@
 package com.xixi.person.talk.dto;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/30 18:43
  * @Description:
  */

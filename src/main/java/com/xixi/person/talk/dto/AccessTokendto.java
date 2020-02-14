@@ -3,32 +3,40 @@ package com.xixi.person.talk.dto;
 import lombok.Data;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/15 20:21
  * @Description: AccessToken传输类
  */
 
 public class AccessTokendto {
-    private String client_id;
-    private String client_secret;
+    private String clientId;
+    private String clientSecret;
     private String code;
-    private String redirect_uri;
+    private String redirectUri;
     private String state;
 
-    public String getClient_id() {
-        return client_id;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
-    public void setClient_id(String client_id) {
-        this.client_id = client_id;
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
     }
 
-    public String getClient_secret() {
-        return client_secret;
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
     }
 
-    public void setClient_secret(String client_secret) {
-        this.client_secret = client_secret;
+    public String getClientId() {
+        return clientId;
+    }
+
+    public String getClientSecret() {
+        return clientSecret;
+    }
+
+    public String getRedirectUri() {
+        return redirectUri;
     }
 
     public String getCode() {
@@ -39,14 +47,6 @@ public class AccessTokendto {
         this.code = code;
     }
 
-    public String getRedirect_uri() {
-        return redirect_uri;
-    }
-
-    public void setRedirect_uri(String redirect_uri) {
-        this.redirect_uri = redirect_uri;
-    }
-
     public String getState() {
         return state;
     }
@@ -55,21 +55,21 @@ public class AccessTokendto {
         this.state = state;
     }
 
-    public AccessTokendto(String client_id, String client_secret, String code, String redirect_uri, String state) {
-        this.client_id = client_id;
-        this.client_secret = client_secret;
+    public AccessTokendto(String clientId, String clientSecret, String code, String redirectUri, String state) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
         this.code = code;
-        this.redirect_uri = redirect_uri;
+        this.redirectUri = redirectUri;
         this.state = state;
     }
 
     @Override
     public String toString() {
         return "AccessTokendto{" +
-                "client_id='" + client_id + '\'' +
-                ", client_secret='" + client_secret + '\'' +
+                "clientId='" + clientId + '\'' +
+                ", clientSecret='" + clientSecret + '\'' +
                 ", code='" + code + '\'' +
-                ", redirect_uri='" + redirect_uri + '\'' +
+                ", redirectUri='" + redirectUri + '\'' +
                 ", state='" + state + '\'' +
                 '}';
     }

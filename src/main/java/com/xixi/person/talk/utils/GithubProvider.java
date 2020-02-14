@@ -25,9 +25,9 @@ public class GithubProvider {
     * @Date: 2019/12/16
     */
     public String getAccessToken(AccessTokendto accessTokendto){
-        MediaType Type = MediaType.get("application/json; charset=utf-8");
+        MediaType type = MediaType.get("application/json; charset=utf-8");
         OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(Type,JSON.toJSONString(accessTokendto));
+        RequestBody body = RequestBody.create(type,JSON.toJSONString(accessTokendto));
             Request request = new Request.Builder()
                     .url("https://github.com/login/oauth/access_token")
                     .post(body)

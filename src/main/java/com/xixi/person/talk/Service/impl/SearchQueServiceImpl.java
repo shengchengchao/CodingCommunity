@@ -1,12 +1,11 @@
 package com.xixi.person.talk.Service.impl;
 
 import com.xixi.person.talk.Service.SearchQueService;
-import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.dto.SearchDto;
-import com.xixi.person.talk.mapper.QuestionMapper;
+import com.xixi.person.talk.Mapper.QuestionMapper;
 
-import com.xixi.person.talk.model.Question;
-import com.xixi.person.talk.model.QuestionExample;
+import com.xixi.person.talk.Model.Question;
+import com.xixi.person.talk.Model.QuestionExample;
 import io.searchbox.client.JestClient;
 import io.searchbox.core.Index;
 import io.searchbox.core.Search;
@@ -15,7 +14,6 @@ import org.elasticsearch.index.query.BoolQueryBuilder;
 
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.WildcardQueryBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

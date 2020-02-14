@@ -8,13 +8,13 @@ import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.dto.SearchDto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
-import com.xixi.person.talk.mapper.QuestionMapper;
-import com.xixi.person.talk.mapper.QuestionextraMapper;
-import com.xixi.person.talk.mapper.UserMapper;
-import com.xixi.person.talk.model.Question;
-import com.xixi.person.talk.model.QuestionExample;
-import com.xixi.person.talk.model.User;
-import com.xixi.person.talk.model.UserExample;
+import com.xixi.person.talk.Mapper.QuestionMapper;
+import com.xixi.person.talk.Mapper.QuestionextraMapper;
+import com.xixi.person.talk.Mapper.UserMapper;
+import com.xixi.person.talk.Model.Question;
+import com.xixi.person.talk.Model.QuestionExample;
+import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.Model.UserExample;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -146,7 +146,7 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionMapper.selectByExampleWithBLOBs(questionExample);
         return questions.get(0);
     }
-
+    @Override
     @Transactional
     public void insviewCount(Long id){
         Question question=new Question();

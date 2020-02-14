@@ -201,7 +201,7 @@ CodeMirror.defineMode("haskell", function(_config, modeConfig) {
       "==", ">", ">=", ">>", ">>=", "^", "^^", "||", "*", "**");
 
     setType("builtin")(
-      "Bool", "Bounded", "Char", "Double", "EQ", "Either", "Enum", "Eq",
+      "Bool", "Bounded", "Char", "Double", "EQ", "Either", "enums", "Eq",
       "False", "FilePath", "Float", "Floating", "Fractional", "Functor", "GT",
       "IO", "IOError", "Int", "Integer", "Integral", "Just", "LT", "Left",
       "Maybe", "Monad", "Nothing", "Num", "Ord", "Ordering", "Rational", "Read",

@@ -71,6 +71,9 @@ ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
   ##### 2020-2-10更新
   本次更新版本：v2020-2-10  
     使用RabbitMQ完成了消息通知
+   ##### 2020-2-14更新
+     本次更新版本：v2020-2-14 
+       使用定时器完成热门话题
                
  
             

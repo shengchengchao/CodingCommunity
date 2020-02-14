@@ -1,9 +1,9 @@
 package com.xixi.person.talk.Service;
 
-import com.xixi.person.talk.model.User;
+import com.xixi.person.talk.Model.User;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/16 19:33
  * @Description:
  */
@@ -20,7 +20,7 @@ public interface UserService {
     
     /**
     * @Description:  根据token查询用户
-    * @Param: 
+    * @Param: token 随机字符串
     * @return: 
     * @Author: xixi
     * @Date: 2019/12/23

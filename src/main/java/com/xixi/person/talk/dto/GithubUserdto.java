@@ -3,23 +3,22 @@ package com.xixi.person.talk.dto;
 import org.springframework.stereotype.Component;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/15 21:16
  * @Description: 从github中获取的用户信息 传输类
  */
-
 public class GithubUserdto {
     private String name;
     private Long id;
     private String bio;
-    private String avatar_Url;
+    private String avatarUrl;
 
-    public String getAvatar_Url() {
-        return avatar_Url;
+    public String getAvatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_Url(String avatar_Url) {
-        this.avatar_Url = avatar_Url;
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getName() {
@@ -52,7 +51,7 @@ public class GithubUserdto {
                 "name='" + name + '\'' +
                 ", id=" + id +
                 ", bio='" + bio + '\'' +
-                ", avatarUrl='" + avatar_Url + '\'' +
+                ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
     }
 }

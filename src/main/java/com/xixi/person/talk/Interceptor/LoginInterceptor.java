@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.dto.TagDTO;
-import com.xixi.person.talk.model.User;
-import org.springframework.beans.BeanUtils;
+import com.xixi.person.talk.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -16,10 +14,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/20 12:36
  * @Description: 拦截器 对于用户是否登陆进行验证
  */
@@ -35,13 +32,13 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         User user = (User)request.getSession().getAttribute("user");
         Integer unreadCount = (Integer)request.getSession().getAttribute("unreadCount");
-        if(user!=null && !user.equals("") && unreadCount!= null ){
+        if(user!=null && !"".equals(user) && unreadCount!= null ){
             return true;
         }
         Cookie[] cookies = request.getCookies();
         if(cookies!=null && cookies.length!=0){
             for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("token")){
+                if("token".equals(cookie.getName())){
                     String token = cookie.getValue();
                     String userStr = (String)redisTemplate.opsForValue().get(token);
                     user = JSON.parseObject(userStr, User.class);

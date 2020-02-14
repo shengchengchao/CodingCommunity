@@ -1620,7 +1620,7 @@
       }
 
       try { var rng = range(start.node, start.offset, end.offset, end.node); }
-      catch(e) {} // Our model of the DOM might be outdated, in which case the range we try to set can be impossible
+      catch(e) {} // Our Model of the DOM might be outdated, in which case the range we try to set can be impossible
       if (rng) {
         sel.removeAllRanges();
         sel.addRange(rng);
@@ -3369,7 +3369,7 @@
       }
     });
 
-    // Listen to wheel events in order to try and update the viewport on time.
+    // listen to wheel events in order to try and update the viewport on time.
     on(d.scroller, "mousewheel", function(e){onScrollWheel(cm, e);});
     on(d.scroller, "DOMMouseScroll", function(e){onScrollWheel(cm, e);});
 

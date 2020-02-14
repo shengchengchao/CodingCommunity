@@ -1,15 +1,13 @@
 package com.xixi.person.talk.Service;
 
-import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.dto.SearchDto;
-import com.xixi.person.talk.model.Question;
-import org.springframework.stereotype.Service;
+import com.xixi.person.talk.Model.Question;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2020/1/5 09:36
  * @Description:
  */

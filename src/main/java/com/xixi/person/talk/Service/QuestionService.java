@@ -2,13 +2,13 @@ package com.xixi.person.talk.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.dto.QuestionDto;
-import com.xixi.person.talk.model.Question;
+import com.xixi.person.talk.Model.Question;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/17 20:45
  * @Description:
  */
