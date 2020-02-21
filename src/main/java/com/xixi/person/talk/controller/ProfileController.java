@@ -50,9 +50,10 @@ public class ProfileController {
             model.addAttribute("section","questions");
             model.addAttribute("sectionName","我的提问");
             String search="";
+            String tag="";
             PageInfo pageInfo= null;
             try {
-                pageInfo = questionServiceImpl.selQuestionList(user.getAccountId(),size,page,search);
+                pageInfo = questionServiceImpl.selQuestionList(user.getAccountId(),size,page,search,tag);
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -1,5 +1,6 @@
 package com.xixi.person.talk.controller;
 
+import com.alibaba.druid.pool.vendor.SybaseExceptionSorter;
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
@@ -43,16 +44,20 @@ public class IndexController {
     public  String login( HttpSession session, Model model,
                          @RequestParam(defaultValue = "3") int size,
                          @RequestParam(defaultValue = "1") int page,
-     @RequestParam(name = "search", required = false) String search){
+                         @RequestParam(defaultValue = "",name = "search", required = false) String search,
+                         @RequestParam(defaultValue = "",name = "tag", required = false) String tag){
         Long id=0L;
         //查询出当前页数据，填充列表数据
         PageInfo pageInfo = null;
+
         try {
-            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search);
+            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search,tag);
         } catch (IOException e) {
             e.printStackTrace();
         }
         model.addAttribute("pageInfo",pageInfo);
+        model.addAttribute("tag",tag);
+        model.addAttribute("search",search);
         model.addAttribute("tags",tagTasks.setHotTag());
         return "/index";
     }

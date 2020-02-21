@@ -60,13 +60,12 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     @Transactional
-    public PageInfo selQuestionList(Long accountId,int size, int page,String search) throws IOException {
+    public PageInfo selQuestionList(Long accountId,int size, int page,String search,String tag) throws IOException {
         List<SearchDto> searchDtoList = null;
-        if(StringUtils.isNotBlank(search)&&!search.equals(",") ) {
-            searchDtoList=searchQueServiceImpl.resultList(search);
+        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag) ) {
+            searchDtoList=searchQueServiceImpl.resultList(search,tag);
         }
-        if(searchDtoList != null && !searchDtoList.equals("")) {
-
+        if(searchDtoList != null && !"".equals(searchDtoList)) {
             List<QuestionDto> questionDtoList = new ArrayList<>();
             for (SearchDto searchDto : searchDtoList) {
                 QuestionDto questionDto = new QuestionDto();

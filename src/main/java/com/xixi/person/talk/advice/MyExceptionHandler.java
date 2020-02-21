@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Author: xixi-98
@@ -53,6 +55,7 @@ public class MyExceptionHandler {
                 model.addAttribute("message", (QuestionErrorCodeEnum.SYS_ERROR).getMessage());
             }
             return new ModelAndView("error");
+
         }
     }
 }

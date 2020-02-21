@@ -37,7 +37,7 @@ public class fileController {
             if(result){
                 // 下面response返回的json格式是editor.md所限制的，规范输出就OK
                 fileDTO.setSuccess(1);
-                fileDTO.setUrl("http://121.36.26.52/"+fileName);
+                fileDTO.setUrl("http://39.107.47.5/"+fileName);
                 fileDTO.setMessage("上传成功");
             }
         } catch (Exception e) {

@@ -30,7 +30,7 @@ public interface SearchQueService {
     * @Author: xixi
     * @Date: 2020/1/5
     */
-    List<SearchDto> resultList(String search) throws IOException;
+    List<SearchDto> resultList(String search, String tag) throws IOException;
 
     void putall();
 

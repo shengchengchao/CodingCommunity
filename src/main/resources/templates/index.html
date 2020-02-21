@@ -36,10 +36,10 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading">
-                        <a th:href="@{'/question/'+ ${question.id}}" th:text="${question.title}"></a>
+                    <h4 class="media-headin">
+                        <a th:href="@{'/question/'+ ${question.id}}" th:utext="${question.title}"></a>
                     </h4>
-                    <span th:text="${question.description}"></span> <br>
+                    <span th:utext="${question.description}"></span> <br>
                     <span class="text-desc"><span th:text="${question.commentCount}"></span> 个回复 • <span
                             th:text="${question.viewCount}"></span> 次浏览 • <span  th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
                 </div>
@@ -48,29 +48,29 @@
                 <ul class="pagination">
                     <!-- 显示第一页图标 <<-->
                     <li th:unless="${pageInfo.isFirstPage}">
-                        <a th:href="@{/index(page=1,search=${search})}" aria-label="Previous">
+                        <a th:href="@{/index(page=1,search=${search},tag=${tag})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <!-- 显示上一页图标 <-->
                     <li th:if="${pageInfo.hasPreviousPage}">
-                        <a  th:href="@{/index(page=${pageInfo.pageNum - 1},search=${search})}"  aria-label="Previous">
+                        <a  th:href="@{/index(page=${pageInfo.pageNum - 1},search=${search},tag=${tag})}"  aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <!-- 显示页码图标 < -->
                     <li th:each="page : ${pageInfo.navigatepageNums}">
-                        <a th:href="@{/index(page=${page},search=${search},search=${search})}" th:text="${page}"></a>
+                        <a th:href="@{/index(page=${page},search=${search},tag=${tag})}" th:text="${page}"></a>
                     </li>
                     <!-- 显示下一页图标 >-->
                     <li th:if="${pageInfo.hasNextPage}">
-                        <a th:href="@{/index(page=${pageInfo.pageNum +1 },search=${search})}" aria-label="Previous">
+                        <a th:href="@{/index(page=${pageInfo.pageNum +1 },search=${search},tag=${tag})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <!-- 显示最后最后一页图标 >>-->
                     <li th:unless="${pageInfo.isLastPage}">
-                        <a th:href="@{/index(page=${pageInfo.pages},search=${search})}"  aria-label="Previous">
+                        <a th:href="@{/index(page=${pageInfo.pages},search=${search},tag=${tag})}"  aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>
@@ -82,7 +82,7 @@
                 <h4>热门问题</h4>
                 <ul class="question-related">
                     <li th:each="tag : ${tags}">
-                        <a th:href="index" th:text="${tag}"></a>
+                        <a th:href="@{/index(page=1,search=${search},tag=${tag})}" th:text="${tag}"></a>
                     </li>
                 </ul>
             </div>
