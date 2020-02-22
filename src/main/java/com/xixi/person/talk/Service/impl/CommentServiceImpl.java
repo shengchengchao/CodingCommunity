@@ -9,7 +9,6 @@ import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.Mapper.*;
 import com.xixi.person.talk.Model.*;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
