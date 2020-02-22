@@ -45,19 +45,21 @@ public class IndexController {
                          @RequestParam(defaultValue = "3") int size,
                          @RequestParam(defaultValue = "1") int page,
                          @RequestParam(defaultValue = "",name = "search", required = false) String search,
-                         @RequestParam(defaultValue = "",name = "tag", required = false) String tag){
+                         @RequestParam(defaultValue = "",name = "tag", required = false) String tag,
+                          @RequestParam(defaultValue = "",name = "sort", required = false) String sort){
         Long id=0L;
         //查询出当前页数据，填充列表数据
         PageInfo pageInfo = null;
 
         try {
-            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search,tag);
+            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search,tag,sort);
         } catch (IOException e) {
             e.printStackTrace();
         }
         model.addAttribute("pageInfo",pageInfo);
         model.addAttribute("tag",tag);
         model.addAttribute("search",search);
+        model.addAttribute("sort",sort);
         model.addAttribute("tags",tagTasks.setHotTag());
         return "/index";
     }

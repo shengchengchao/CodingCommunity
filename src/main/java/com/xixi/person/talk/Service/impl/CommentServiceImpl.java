@@ -1,5 +1,6 @@
 package com.xixi.person.talk.Service.impl;
 
+import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.enums.CommentTypeEnum;
 import com.xixi.person.talk.enums.NotificationEnum;
 import com.xixi.person.talk.Service.CommentService;
@@ -11,6 +12,7 @@ import com.xixi.person.talk.Model.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +29,8 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService{
     @Resource
     private CommentMapper commentMapper;
-
     @Resource
     private QuestionMapper questionMapper;
-
     @Resource
     private QuestionextraMapper questionextraMapper;
     @Resource
@@ -40,7 +40,9 @@ public class CommentServiceImpl implements CommentService{
     @Resource
     private NotificationMapper notificationMapper;
     @Autowired
-    private RabbitTemplate rabbitTemplate;
+    private RedisTemplate redisTemplate;
+    @Resource
+    private NotificationService notificationServiceImpl;
 
     
     /**
@@ -137,6 +139,12 @@ public class CommentServiceImpl implements CommentService{
         record.setType(type.getType());
         record.setOuterid(outerid);
 
-        rabbitTemplate.convertAndSend("exchange.direct","notification",record);
+        notificationMapper.insert(record);
+        Integer unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
+        if (unreadCount == null){
+            unreadCount = notificationServiceImpl.unreadCount(record.getReceiver());
+            redisTemplate.opsForValue().set("unreadCount",unreadCount);
+        }
+        redisTemplate.opsForValue().set("unreadCount",unreadCount+1);
     }
 }

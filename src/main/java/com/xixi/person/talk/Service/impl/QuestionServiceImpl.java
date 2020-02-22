@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,10 +62,35 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     @Transactional
-    public PageInfo selQuestionList(Long accountId,int size, int page,String search,String tag) throws IOException {
+    public PageInfo selQuestionList(Long accountId, int size, int page, String search, String tag, String sort) throws IOException {
+        List<SearchDto> searchDtoLists = null;
         List<SearchDto> searchDtoList = null;
-        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag) ) {
-            searchDtoList=searchQueServiceImpl.resultList(search,tag);
+        String sortStr="";
+        Calendar month = Calendar.getInstance();
+        month.setTime(new Date());
+        month.add(Calendar.MONTH, -2);
+        Date monthThird = month.getTime();
+
+        if ("hot".equals(sort.toLowerCase())) {
+            sortStr="hot";
+        }
+        //使用ES查询出问题
+        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag)) {
+            searchDtoLists=searchQueServiceImpl.resultList(search,tag,sortStr);
+            if ("no".equals(sort.toLowerCase())) {
+                for (SearchDto searchDto : searchDtoLists) {
+                    if(searchDto.getCommentCount()==0){
+                        searchDtoList.add(searchDto);
+                    }
+                }
+            }
+            if ("hot60".equals(sort.toLowerCase())) {
+                for (SearchDto searchDto : searchDtoLists) {
+                    if (searchDto.getGmtModified()>monthThird.getTime()){
+                        searchDtoList.add(searchDto);
+                    }
+                }
+            }
         }
         if(searchDtoList != null && !"".equals(searchDtoList)) {
             List<QuestionDto> questionDtoList = new ArrayList<>();
@@ -80,7 +107,7 @@ public class QuestionServiceImpl implements QuestionService {
             PageInfo pageInfo = new PageInfo(questionDtoList, 5);
             return pageInfo;
         }else {
-            //查询出当前页 问题
+            //使用mysql 查询出当前页问题
             PageHelper.startPage(page, size);
             QuestionExample quesionExample = new QuestionExample();
             quesionExample.setOrderByClause("gmt_create desc");

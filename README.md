@@ -16,7 +16,7 @@
  使用github OAuth2作为第三方登录入口  
  使用ealsticsearch作为检索引擎  
  使用redis作为缓存引擎  
- rabbitMQ做消息服务
+ 使用定时器来完成热门问题的搜索
  
 ## 疑难点
    [github OAuth](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
@@ -68,15 +68,16 @@ ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
 本次更新版本：v2020-2-5  
   使用nginx完成图片的上传服务   
   
-  ##### 2020-2-10更新
-  本次更新版本：v2020-2-10  
-    使用RabbitMQ完成了消息通知
+
   ##### 2020-2-14更新
   本次更新版本：v2020-2-14   
   使用定时器完成热门话题
   ##### 2020-2-21更新
   本次更新版本：v2020-2-21   
-  完善elasticsearch搜索，热门问题支持搜索            
+  完善elasticsearch搜索，热门问题支持搜索
+   ##### 2020-2-22更新
+   本次更新版本：v2020-2-22   
+   添加多个模块，支持热度搜索             
  
             
         

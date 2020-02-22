@@ -32,7 +32,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    PageInfo selQuestionList(Long accountid,int size, int page,String search,String tag) throws IOException;
+    PageInfo selQuestionList(Long accountid, int size, int page, String search, String tag, String sort) throws IOException;
 
 
     
