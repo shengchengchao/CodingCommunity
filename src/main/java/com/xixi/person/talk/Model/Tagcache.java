@@ -1,6 +1,8 @@
 package com.xixi.person.talk.Model;
 
-public class Tagcache {
+import java.io.Serializable;
+
+public class Tagcache implements Serializable {
     private Short id;
 
     private String cache;

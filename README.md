@@ -1,5 +1,5 @@
 ## 在线预览
-[问答社区](http://121.36.26.52:8080/index)
+[问答社区](http://39.107.47.5:8018/index)
 
 ## 主要技术栈
 - spring boot
@@ -12,7 +12,7 @@
 - RabbitMQ
  
  ## 项目描述
- [码农问答社区](http://121.36.26.52:8080/index)是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch。  
+ [码农问答社区](http://39.107.47.5:8018/index)是一个类ealsticsearch中文社区的问答社区，采用Spring boot+Thymeleaf,项目涉及的企业级应用包括redis,elasticsearch。  
  使用github OAuth2作为第三方登录入口  
  使用ealsticsearch作为检索引擎  
  使用redis作为缓存引擎  
@@ -61,7 +61,6 @@ ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
 ## Linux运行步骤
 - 开启es  su - elasticsearch /usr/local/tmp/elasticsearch-6.8.2/bin/elasticsearch
 - 编译 mvn compile package
-- 打包 mvn package
 - 运行 java -jar -Dspring.profiles.active=production target/talk-0.0.1-SNAPSHOT.jar    
 ## 更新记录   
 ##### 2020-2-5更新
@@ -78,6 +77,8 @@ ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
    ##### 2020-2-22更新
    本次更新版本：v2020-2-22   
    添加多个模块，支持热度搜索             
- 
+ ##### 2020-2-22更新
+   本次更新版本：v2020-2-24   
+   修复无法分页的问题。
             
         

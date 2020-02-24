@@ -1,6 +1,6 @@
 package com.xixi.person.talk.dto;
 
-import lombok.Data;
+import java.io.Serializable;
 
 /**
  * @Author: xixi-98
@@ -8,68 +8,68 @@ import lombok.Data;
  * @Description: AccessToken传输类
  */
 
-public class AccessTokendto {
-    private String clientId;
-    private String clientSecret;
+public class AccessTokendto implements Serializable {
+    private String client_id;
+    private String client_secret;
     private String code;
-    private String redirectUri;
+    private String redirect_uri;
     private String state;
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public AccessTokendto(String client_id, String client_secret, String code, String redirect_uri, String state) {
+        this.client_id = client_id;
+        this.client_secret = client_secret;
+        this.code = code;
+        this.redirect_uri = redirect_uri;
+        this.state = state;
     }
 
-    public void setClientSecret(String clientSecret) {
-        this.clientSecret = clientSecret;
+    public String getClient_id() {
+        return client_id;
     }
 
-    public void setRedirectUri(String redirectUri) {
-        this.redirectUri = redirectUri;
-    }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getClientSecret() {
-        return clientSecret;
-    }
-
-    public String getRedirectUri() {
-        return redirectUri;
+    public String getClient_secret() {
+        return client_secret;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getRedirect_uri() {
+        return redirect_uri;
     }
 
     public String getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setClient_id(String client_id) {
+        this.client_id = client_id;
     }
 
-    public AccessTokendto(String clientId, String clientSecret, String code, String redirectUri, String state) {
-        this.clientId = clientId;
-        this.clientSecret = clientSecret;
+    public void setClient_secret(String client_secret) {
+        this.client_secret = client_secret;
+    }
+
+    public void setCode(String code) {
         this.code = code;
-        this.redirectUri = redirectUri;
+    }
+
+    public void setRedirect_uri(String redirect_uri) {
+        this.redirect_uri = redirect_uri;
+    }
+
+    public void setState(String state) {
         this.state = state;
     }
 
     @Override
     public String toString() {
         return "AccessTokendto{" +
-                "clientId='" + clientId + '\'' +
-                ", clientSecret='" + clientSecret + '\'' +
+                "client_id='" + client_id + '\'' +
+                ", client_secret='" + client_secret + '\'' +
                 ", code='" + code + '\'' +
-                ", redirectUri='" + redirectUri + '\'' +
+                ", redirect_uri='" + redirect_uri + '\'' +
                 ", state='" + state + '\'' +
                 '}';
     }

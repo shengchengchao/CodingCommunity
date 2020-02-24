@@ -3,10 +3,14 @@ package com.xixi.person.talk.utils;
 import com.alibaba.fastjson.JSON;
 import com.xixi.person.talk.dto.AccessTokendto;
 import com.xixi.person.talk.dto.GithubUserdto;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -15,6 +19,7 @@ import java.io.IOException;
  * @Description: provider工具类
  */
 @Component
+@Slf4j
 public class GithubProvider {
 
     /**
@@ -25,19 +30,24 @@ public class GithubProvider {
     * @Date: 2019/12/16
     */
     public String getAccessToken(AccessTokendto accessTokendto){
-        MediaType type = MediaType.get("application/json; charset=utf-8");
-        OkHttpClient client = new OkHttpClient();
-        RequestBody body = RequestBody.create(type,JSON.toJSONString(accessTokendto));
+            MediaType mediaType = MediaType.get("application/json; charset=utf-8");
+
+            OkHttpClient client = new OkHttpClient();
+            System.out.println(JSON.toJSONString(accessTokendto));
+            String s = JSON.toJSONString(accessTokendto);
+            RequestBody body = RequestBody.create(mediaType,s);
+
             Request request = new Request.Builder()
                     .url("https://github.com/login/oauth/access_token")
                     .post(body)
                     .build();
             try (Response response = client.newCall(request).execute()) {
                 String string = response.body().string();
-                //使用正则表达式，对其进行分割，获得需要的token,其实只要对于& 进行分割就可以了 例 49d0a2818a7676c0527b67057071df9571bb09b9
+                System.out.println(string);
                 String token = string.split("&")[0].split("=")[1];
                 return token;
-            } catch (IOException e) {
+            } catch (Exception e) {
+                log.error("getAccessToken error,{}", accessTokendto, e);
             }
             return null;
     }
@@ -60,7 +70,7 @@ public class GithubProvider {
                 String string = response.body().string();
                 //json的转换 使用fastjson
                 GithubUserdto githubUserdto = JSON.parseObject(string, GithubUserdto.class);
-
+                System.out.println("githubUserdto :"+githubUserdto.toString());
                 return githubUserdto;
             } catch (IOException e) {
                 e.printStackTrace();

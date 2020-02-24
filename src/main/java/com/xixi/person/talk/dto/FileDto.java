@@ -1,11 +1,13 @@
 package com.xixi.person.talk.dto;
 
+import java.io.Serializable;
+
 /**
  * @Author: xixi-98
  * @Date: 2019/12/30 18:43
  * @Description:
  */
-public class FileDto {
+public class FileDto implements Serializable {
     private int success;
     private String message;
     private String url;

@@ -2,12 +2,14 @@ package com.xixi.person.talk.dto;
 
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
+
 /**
  * @Author: xixi-98
  * @Date: 2019/12/15 21:16
  * @Description: 从github中获取的用户信息 传输类
  */
-public class GithubUserdto {
+public class GithubUserdto implements Serializable {
     private String name;
     private Long id;
     private String bio;

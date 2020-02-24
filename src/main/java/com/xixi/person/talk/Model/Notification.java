@@ -1,6 +1,8 @@
 package com.xixi.person.talk.Model;
 
-public class Notification {
+import java.io.Serializable;
+
+public class Notification implements Serializable {
     private Long id;
     //通知者
     private Long notifier;

@@ -35,11 +35,11 @@ public class AuthorizeController {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Value("${AccessTokenfdto.Client_id}")
+    @Value("${AccessTokendto.Client_id}")
     private String clientId;
-    @Value("${AccessTokenfdto.Client_secret}")
+    @Value("${AccessTokendto.Client_secret}")
     private String clientSecret;
-    @Value("${AccessTokenfdto.Redirect_uri}")
+    @Value("${AccessTokendto.Redirect_uri}")
     private String redirectUri;
 
     /**
@@ -54,13 +54,12 @@ public class AuthorizeController {
     */
     @RequestMapping("/callback")
     public String callback(@RequestParam(name = "code") String code,
-                           @RequestParam(name = "state") String state, HttpSession session,
+                           @RequestParam(name = "state") String state,
                            HttpServletResponse response){
 
         AccessTokendto accessTokendto = new AccessTokendto(clientId,clientSecret,code,redirectUri,state);
 
         String accessToken = githubProvider.getAccessToken(accessTokendto);
-
         GithubUserdto githubuser = githubProvider.getUser(accessToken);
 
         //将获得到的githubuser中信息 传入到users对象中，存放到数据库中，进行持久化操作。
@@ -79,6 +78,7 @@ public class AuthorizeController {
             //存放到cookies中
             Cookie cookie=new Cookie("token",token);
             response.addCookie(cookie);
+            cookie.setMaxAge(60 * 60 * 24 * 30 * 6);
             String userJson = JSONObject.toJSONString(user);
             redisTemplate.opsForValue().set(token,userJson);
 

@@ -3,12 +3,14 @@ package com.xixi.person.talk.dto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
 
+import java.io.Serializable;
+
 /**
  * @Author: xixi-98
  * @Date: 2019/12/24 20:18
  * @Description:
  */
-public class ResultDto<T> {
+public class ResultDto<T> implements Serializable {
     private int code;
     private String message;
     private T data;

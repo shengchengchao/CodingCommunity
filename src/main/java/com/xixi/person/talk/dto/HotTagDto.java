@@ -1,11 +1,13 @@
 package com.xixi.person.talk.dto;
 
+import java.io.Serializable;
+
 /**
  * @Author: xixi-98
  * @Date: 2020/2/14 19:14
  * @Description:
  */
-public class HotTagDto implements Comparable {
+public class HotTagDto implements Comparable,Serializable {
     private String name;
     private Integer priority;
 

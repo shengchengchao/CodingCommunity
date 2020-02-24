@@ -70,12 +70,11 @@ public class QuestionServiceImpl implements QuestionService {
         month.setTime(new Date());
         month.add(Calendar.MONTH, -2);
         Date monthThird = month.getTime();
-
         if ("hot".equals(sort.toLowerCase())) {
             sortStr="hot";
         }
         //使用ES查询出问题
-        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag)) {
+        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag)||StringUtils.isNotBlank(sort)) {
             searchDtoLists=searchQueServiceImpl.resultList(search,tag,sortStr);
             if ("no".equals(sort.toLowerCase())) {
                 for (SearchDto searchDto : searchDtoLists) {
@@ -83,16 +82,18 @@ public class QuestionServiceImpl implements QuestionService {
                         searchDtoList.add(searchDto);
                     }
                 }
-            }
-            if ("hot60".equals(sort.toLowerCase())) {
+            }else if ("hot60".equals(sort.toLowerCase())) {
                 for (SearchDto searchDto : searchDtoLists) {
                     if (searchDto.getGmtModified()>monthThird.getTime()){
                         searchDtoList.add(searchDto);
                     }
                 }
+            }else if ("new".equals(sort.toLowerCase())){
+                searchDtoList=searchDtoLists;
             }
         }
         if(searchDtoList != null && !"".equals(searchDtoList)) {
+
             List<QuestionDto> questionDtoList = new ArrayList<>();
             for (SearchDto searchDto : searchDtoList) {
                 QuestionDto questionDto = new QuestionDto();
@@ -103,11 +104,10 @@ public class QuestionServiceImpl implements QuestionService {
                 questionDto.setUser(users.get(0));
                 questionDtoList.add(questionDto);
             }
-            PageHelper.startPage(page, size);
-            PageInfo pageInfo = new PageInfo(questionDtoList, 5);
+            PageInfo pageInfo = getPageInfo(questionDtoList,size,page);
             return pageInfo;
         }else {
-            //使用mysql 查询出当前页问题
+            //使用mysql 查询出当前页问题 es 存在挂掉的可能
             PageHelper.startPage(page, size);
             QuestionExample quesionExample = new QuestionExample();
             quesionExample.setOrderByClause("gmt_create desc");
@@ -193,6 +193,38 @@ public class QuestionServiceImpl implements QuestionService {
         question.setId(questionDto.getId());
         List<Question> questions = questionextraMapper.selQuestionTag(question);
         return questions;
+    }
+
+    @Override
+    public PageInfo getPageInfo(List<QuestionDto> list, int size, int page) {
+        PageInfo pageInfo =new PageInfo(list,5);
+        pageInfo.setPageNum(page);
+        pageInfo.setSize(size);
+        List<QuestionDto> selectList =new ArrayList<>();
+        int maxPage=list.size()/size;
+        if(list.size()%size !=0){
+            maxPage++;
+        }
+        List<Integer> pages = new ArrayList<>();
+        pages.add(page);
+        for (int i = 1; i <= 3; i++) {
+            if (page - i > 0) {
+                pages.add(0, page - i);
+            }
+            if (page + i <= maxPage) {
+                pages.add(page + i);
+            }
+        }
+        int[] arr1 = pages.stream().mapToInt(Integer::valueOf).toArray();
+        pageInfo.setHasPreviousPage((page-1>0)&&(page<=maxPage));
+        pageInfo.setIsLastPage(page==maxPage);
+        pageInfo.setIsFirstPage(page==1);
+        pageInfo.setNavigatepageNums(arr1);
+        for (int i= size*page-3;i < size*page && i<list.size();i++){
+            selectList.add(list.get(i));
+        }
+        pageInfo.setList(selectList);
+        return pageInfo;
     }
 
 

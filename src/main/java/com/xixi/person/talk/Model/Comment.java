@@ -1,6 +1,8 @@
 package com.xixi.person.talk.Model;
 
-public class Comment {
+  import java.io.Serializable;
+
+public class Comment implements Serializable {
     private Long id;
 
     private Long parentId;

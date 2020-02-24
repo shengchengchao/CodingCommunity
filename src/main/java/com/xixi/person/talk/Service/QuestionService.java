@@ -71,4 +71,13 @@ public interface QuestionService {
     * @Date: 2019/12/27
     */
     List<Question> selTagrealted(QuestionDto question);
+    
+    /**
+    * @Description: 获得pageinfo对象 自定义分页
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2020/2/24
+    */
+    PageInfo getPageInfo(List<QuestionDto> list,int size,int page);
 }

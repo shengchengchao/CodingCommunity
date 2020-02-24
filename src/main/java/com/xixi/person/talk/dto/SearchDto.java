@@ -2,12 +2,14 @@ package com.xixi.person.talk.dto;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+
 /**
  * @Author: xixi-98
  * @Date: 2020/1/5 13:55
  * @Description:
  */
-public class SearchDto {
+public class SearchDto implements Serializable {
     @Id
     private long id;
 

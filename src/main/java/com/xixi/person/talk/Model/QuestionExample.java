@@ -1,9 +1,10 @@
 package com.xixi.person.talk.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionExample {
+public class QuestionExample implements Serializable {
     protected String orderByClause;
 
     protected boolean distinct;

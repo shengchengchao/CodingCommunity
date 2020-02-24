@@ -24,8 +24,7 @@ import java.util.List;
 public class UserServiecImpl implements UserService {
     @Resource
     private UserMapper userMapper;
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+
     @Autowired
     private RedisTemplate redisTemplate;
     /**

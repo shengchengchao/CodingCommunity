@@ -46,7 +46,7 @@ public class IndexController {
                          @RequestParam(defaultValue = "1") int page,
                          @RequestParam(defaultValue = "",name = "search", required = false) String search,
                          @RequestParam(defaultValue = "",name = "tag", required = false) String tag,
-                          @RequestParam(defaultValue = "",name = "sort", required = false) String sort){
+                          @RequestParam(defaultValue = "new",name = "sort", required = false) String sort){
         Long id=0L;
         //查询出当前页数据，填充列表数据
         PageInfo pageInfo = null;
@@ -61,7 +61,7 @@ public class IndexController {
         model.addAttribute("search",search);
         model.addAttribute("sort",sort);
         model.addAttribute("tags",tagTasks.setHotTag());
-        return "/index";
+        return "index";
     }
 
 }
