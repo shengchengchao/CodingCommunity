@@ -63,12 +63,12 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     @Transactional
     public PageInfo selQuestionList(Long accountId, int size, int page, String search, String tag, String sort) throws IOException {
-        List<SearchDto> searchDtoLists = null;
-        List<SearchDto> searchDtoList = null;
+        List<SearchDto> searchDtoLists = new ArrayList<>();
+        List<SearchDto> searchDtoList = new ArrayList<>();
         String sortStr="";
         Calendar month = Calendar.getInstance();
         month.setTime(new Date());
-        month.add(Calendar.MONTH, -2);
+        month.add(Calendar.MONTH, -5);
         Date monthThird = month.getTime();
         if ("hot".equals(sort.toLowerCase())) {
             sortStr="hot";
@@ -84,11 +84,12 @@ public class QuestionServiceImpl implements QuestionService {
                 }
             }else if ("hot60".equals(sort.toLowerCase())) {
                 for (SearchDto searchDto : searchDtoLists) {
-                    if (searchDto.getGmtModified()>monthThird.getTime()){
+                    long time = monthThird.getTime();
+                    if (searchDto.getGmtModified()>time){
                         searchDtoList.add(searchDto);
                     }
                 }
-            }else if ("new".equals(sort.toLowerCase())){
+            }else {
                 searchDtoList=searchDtoLists;
             }
         }

@@ -54,7 +54,7 @@
 ##### 异常处理
 1.    要完成对于异常的处理，最少需要一个集合QuestionErrorCodeEnum.class对于所有可能发生的异常进行包装
 2.    一个自定义的异常类继承了RuntimeException.class
-3.    一个类MyExceptionHandler添加@ControllerAdvice 自定义一个方法handler添加 @ExceptionHandler 来捕获所有发生的异常，返回值是返回给客户端的类。 该注解在捕获异常时会优先寻找最合适的异常。
+3.    一个类MyExceptionHandler添加@ControllerAdvice，自定义一个方法handler添加 @ExceptionHandler 来捕获所有发生的异常，返回值是返回给客户端的类。 该注解在捕获异常时会优先寻找最合适的异常。
 ExceptionHandlerMethodResolver.getMappedMethod寻找匹配度最高的
 4. 一个类来返回给客户端具体的异常对象。
 5.    在可能出现异常的位置抛出自定义异常类

@@ -13,11 +13,8 @@ import io.searchbox.core.SearchResult;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.common.lucene.search.function.CombineFunction;
 import org.elasticsearch.common.lucene.search.function.FunctionScoreQuery;
-import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.*;
 
-import org.elasticsearch.index.query.MatchQueryBuilder;
-import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.index.query.functionscore.FieldValueFactorFunctionBuilder;
 import org.elasticsearch.index.query.functionscore.FunctionScoreQueryBuilder;
 import org.elasticsearch.index.query.functionscore.ScoreFunctionBuilders;
@@ -134,16 +131,26 @@ public class SearchQueServiceImpl implements SearchQueService {
             MatchQueryBuilder matchQueryBuilderTag= QueryBuilders.matchQuery("tag",tag);
             boolQueryBuilder.must(matchQueryBuilderTag);
         }
+
         if(StringUtils.isNotBlank(sortStr)){
+
             //按热度排序
             FieldValueFactorFunctionBuilder commentCountField = ScoreFunctionBuilders.fieldValueFactorFunction("commentCount").factor(5f);
             FieldValueFactorFunctionBuilder viewCountField = ScoreFunctionBuilders.fieldValueFactorFunction("viewCount").factor(2f);
             FunctionScoreQueryBuilder.FilterFunctionBuilder[] filterFunctionBuilders=
                     new FunctionScoreQueryBuilder.FilterFunctionBuilder[]{new FunctionScoreQueryBuilder.FilterFunctionBuilder(commentCountField),
                             new FunctionScoreQueryBuilder.FilterFunctionBuilder(viewCountField)};
-            FunctionScoreQueryBuilder scoreQueryBuilder = functionScoreQuery(boolQueryBuilder, filterFunctionBuilders)
-                    .scoreMode(FunctionScoreQuery.ScoreMode.SUM).boostMode(CombineFunction.SUM);
-            sourceBuilder.query(scoreQueryBuilder);
+            if(StringUtils.isBlank(tag) && StringUtils.isBlank(search)){
+                MatchAllQueryBuilder matchAllQueryBuilder = QueryBuilders.matchAllQuery();
+                FunctionScoreQueryBuilder scoreQueryBuilder = functionScoreQuery(matchAllQueryBuilder, filterFunctionBuilders)
+                        .scoreMode(FunctionScoreQuery.ScoreMode.SUM).boostMode(CombineFunction.SUM);
+                sourceBuilder.query(scoreQueryBuilder);
+
+            }else{
+                FunctionScoreQueryBuilder scoreQueryBuilder = functionScoreQuery(boolQueryBuilder, filterFunctionBuilders)
+                        .scoreMode(FunctionScoreQuery.ScoreMode.SUM).boostMode(CombineFunction.SUM);
+                sourceBuilder.query(scoreQueryBuilder);
+            }
         }else{
             //按时间排序
             sourceBuilder.query(boolQueryBuilder);

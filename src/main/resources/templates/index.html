@@ -93,7 +93,7 @@
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h4>热门问题</h4>
-                <a th:each="tag : ${tags}" th:href="@{/(page=1,search=${search},tag=${tag},sort=${sort})}"
+                <a th:each="tag : ${tags}" th:href="@{/index(page=1,search=${search},tag=${tag},sort=${sort})}"
                    th:text="${tag}" class="community-tag"></a>
             </div>
         </div>
