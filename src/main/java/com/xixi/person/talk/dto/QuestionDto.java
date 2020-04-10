@@ -1,13 +1,15 @@
 package com.xixi.person.talk.dto;
 
-import com.xixi.person.talk.model.User;
+import com.xixi.person.talk.Model.User;
+
+import java.io.Serializable;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/17 22:28
  * @Description: question对象传输类
  */
-public class QuestionDto {
+public class QuestionDto implements Serializable {
     private Long id;
     private String title;
     private String description;

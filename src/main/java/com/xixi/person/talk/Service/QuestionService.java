@@ -2,13 +2,13 @@ package com.xixi.person.talk.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.xixi.person.talk.dto.QuestionDto;
-import com.xixi.person.talk.model.Question;
+import com.xixi.person.talk.Model.Question;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/17 20:45
  * @Description:
  */
@@ -32,7 +32,7 @@ public interface QuestionService {
     * @Author: xixi
     * @Date: 2019/12/17
     */
-    PageInfo selQuestionList(Long accountid,int size, int page,String search) throws IOException;
+    PageInfo selQuestionList(Long accountid, int size, int page, String search, String tag, String sort) throws IOException;
 
 
     
@@ -71,4 +71,13 @@ public interface QuestionService {
     * @Date: 2019/12/27
     */
     List<Question> selTagrealted(QuestionDto question);
+    
+    /**
+    * @Description: 获得pageinfo对象 自定义分页
+    * @Param: 
+    * @return: 
+    * @Author: xixi
+    * @Date: 2020/2/24
+    */
+    PageInfo getPageInfo(List<QuestionDto> list,int size,int page);
 }

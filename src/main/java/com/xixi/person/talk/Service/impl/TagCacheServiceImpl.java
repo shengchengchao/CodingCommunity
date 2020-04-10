@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.TagCacheService;
 import com.xixi.person.talk.dto.TagDTO;
-import com.xixi.person.talk.mapper.TagcacheMapper;
-import com.xixi.person.talk.model.Tagcache;
-import com.xixi.person.talk.model.TagcacheExample;
+import com.xixi.person.talk.Mapper.TagcacheMapper;
+import com.xixi.person.talk.Model.Tagcache;
+import com.xixi.person.talk.Model.TagcacheExample;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -37,11 +37,11 @@ public class TagCacheServiceImpl implements TagCacheService {
     public List<TagDTO> get() {
         //能够从redis中查询出标签
         String obj = (String)redisTemplate.opsForValue().get("tagDTOS");
-        List<TagDTO> tagDTOSCache = JSON.parseArray(obj, TagDTO.class);
-        if(tagDTOSCache!=null){
-            return tagDTOSCache;
+        List<TagDTO> tagDtosCache = JSON.parseArray(obj, TagDTO.class);
+        if(tagDtosCache!=null){
+            return tagDtosCache;
         }
-        List<TagDTO> tagDTOS = new ArrayList<>();
+        List<TagDTO> tagDtos = new ArrayList<>();
         TagDTO program = new TagDTO();
         program = getTag(program, "开发语言", "program");
         TagDTO framework = new TagDTO();
@@ -53,24 +53,24 @@ public class TagCacheServiceImpl implements TagCacheService {
         TagDTO tool = new TagDTO();
         tool = getTag(tool, "开发工具", "tool");
 
-        tagDTOS.add(program);
-        tagDTOS.add(framework);
-        tagDTOS.add(server);
-        tagDTOS.add(db);
-        tagDTOS.add(tool);
+        tagDtos.add(program);
+        tagDtos.add(framework);
+        tagDtos.add(server);
+        tagDtos.add(db);
+        tagDtos.add(tool);
         // 将集合转为json字符串放入redis中
-        String tagDtos = JSONObject.toJSONString(tagDTOS);
-        redisTemplate.opsForValue().set("tagDTOS",tagDtos);
-        return tagDTOS;
+        String tagDtoStr = JSONObject.toJSONString(tagDtos);
+        redisTemplate.opsForValue().set("tagDTOS",tagDtoStr);
+        return tagDtos;
 
     }
 
     @Override
     public String filterInvalid(String tags) {
         String[] split = StringUtils.split(tags, ",");
-        List<TagDTO> tagDTOS = get();
+        List<TagDTO> tagDtos = get();
         // java8 stream 流
-        List<String> tagList = tagDTOS.stream().flatMap(tag -> tag.getTags().stream()).collect(Collectors.toList());
+        List<String> tagList = tagDtos.stream().flatMap(tag -> tag.getTags().stream()).collect(Collectors.toList());
         String invalid = Arrays.stream(split).filter(t -> !tagList.contains(t)).collect(Collectors.joining(","));
         return invalid;
     }
@@ -83,11 +83,11 @@ public class TagCacheServiceImpl implements TagCacheService {
     * @Author: xixi
     * @Date: 2020/2/4
     */
-    public TagDTO getTag(TagDTO dto,String Chindesc,String Engdesc){
+    public TagDTO getTag(TagDTO dto,String ChinaDesc,String EngDesc){
 
-        dto.setCategoryName(Chindesc);
+        dto.setCategoryName(ChinaDesc);
         TagcacheExample programTagcache = new TagcacheExample();
-        programTagcache.createCriteria().andCacheEqualTo(Engdesc);
+        programTagcache.createCriteria().andCacheEqualTo(EngDesc);
         List<Tagcache> tagcaches = tagcacheMapper.selectByExample(programTagcache);
         List<String> tag=new ArrayList<>();
         for (Tagcache tagcach : tagcaches) {

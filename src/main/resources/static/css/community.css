@@ -48,6 +48,9 @@ body {
 .media-body {
     padding-top: 10px;
 }
+.media-heading{
+    text-decoration: underline;
+}
 
 .text-desc {
     font-size: 12px;

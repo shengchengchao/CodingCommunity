@@ -1,11 +1,13 @@
 package com.xixi.person.talk.dto;
 
+import java.io.Serializable;
+
 /**
- * @Auther: xixi-98
+ * @Author: xixi-98
  * @Date: 2019/12/29 16:48
  * @Description:
  */
-public class NotificationDto {
+public class NotificationDto implements Serializable {
     private Long id;
 
     private Long notifier;

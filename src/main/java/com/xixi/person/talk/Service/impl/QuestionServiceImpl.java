@@ -8,13 +8,13 @@ import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.dto.SearchDto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
-import com.xixi.person.talk.mapper.QuestionMapper;
-import com.xixi.person.talk.mapper.QuestionextraMapper;
-import com.xixi.person.talk.mapper.UserMapper;
-import com.xixi.person.talk.model.Question;
-import com.xixi.person.talk.model.QuestionExample;
-import com.xixi.person.talk.model.User;
-import com.xixi.person.talk.model.UserExample;
+import com.xixi.person.talk.Mapper.QuestionMapper;
+import com.xixi.person.talk.Mapper.QuestionextraMapper;
+import com.xixi.person.talk.Mapper.UserMapper;
+import com.xixi.person.talk.Model.Question;
+import com.xixi.person.talk.Model.QuestionExample;
+import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.Model.UserExample;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -60,12 +62,38 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     @Transactional
-    public PageInfo selQuestionList(Long accountId,int size, int page,String search) throws IOException {
-        List<SearchDto> searchDtoList = null;
-        if(StringUtils.isNotBlank(search)&&!search.equals(",") ) {
-            searchDtoList=searchQueServiceImpl.resultList(search);
+    public PageInfo selQuestionList(Long accountId, int size, int page, String search, String tag, String sort) throws IOException {
+        List<SearchDto> searchDtoLists = new ArrayList<>();
+        List<SearchDto> searchDtoList = new ArrayList<>();
+        String sortStr="";
+        Calendar month = Calendar.getInstance();
+        month.setTime(new Date());
+        month.add(Calendar.MONTH, -5);
+        Date monthThird = month.getTime();
+        if ("hot".equals(sort.toLowerCase())) {
+            sortStr="hot";
         }
-        if(searchDtoList != null && !searchDtoList.equals("")) {
+        //使用ES查询出问题
+        if(StringUtils.isNotBlank(search)||StringUtils.isNotBlank(tag)||StringUtils.isNotBlank(sort)) {
+            searchDtoLists=searchQueServiceImpl.resultList(search,tag,sortStr);
+            if ("no".equals(sort.toLowerCase())) {
+                for (SearchDto searchDto : searchDtoLists) {
+                    if(searchDto.getCommentCount()==0){
+                        searchDtoList.add(searchDto);
+                    }
+                }
+            }else if ("hot60".equals(sort.toLowerCase())) {
+                for (SearchDto searchDto : searchDtoLists) {
+                    long time = monthThird.getTime();
+                    if (searchDto.getGmtModified()>time){
+                        searchDtoList.add(searchDto);
+                    }
+                }
+            }else {
+                searchDtoList=searchDtoLists;
+            }
+        }
+        if(searchDtoList != null && !"".equals(searchDtoList)) {
 
             List<QuestionDto> questionDtoList = new ArrayList<>();
             for (SearchDto searchDto : searchDtoList) {
@@ -77,11 +105,10 @@ public class QuestionServiceImpl implements QuestionService {
                 questionDto.setUser(users.get(0));
                 questionDtoList.add(questionDto);
             }
-            PageHelper.startPage(page, size);
-            PageInfo pageInfo = new PageInfo(questionDtoList, 5);
+            PageInfo pageInfo = getPageInfo(questionDtoList,size,page);
             return pageInfo;
         }else {
-            //查询出当前页 问题
+            //使用mysql 查询出当前页问题 es 存在挂掉的可能
             PageHelper.startPage(page, size);
             QuestionExample quesionExample = new QuestionExample();
             quesionExample.setOrderByClause("gmt_create desc");
@@ -146,7 +173,7 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questions = questionMapper.selectByExampleWithBLOBs(questionExample);
         return questions.get(0);
     }
-
+    @Override
     @Transactional
     public void insviewCount(Long id){
         Question question=new Question();
@@ -167,6 +194,38 @@ public class QuestionServiceImpl implements QuestionService {
         question.setId(questionDto.getId());
         List<Question> questions = questionextraMapper.selQuestionTag(question);
         return questions;
+    }
+
+    @Override
+    public PageInfo getPageInfo(List<QuestionDto> list, int size, int page) {
+        PageInfo pageInfo =new PageInfo(list,5);
+        pageInfo.setPageNum(page);
+        pageInfo.setSize(size);
+        List<QuestionDto> selectList =new ArrayList<>();
+        int maxPage=list.size()/size;
+        if(list.size()%size !=0){
+            maxPage++;
+        }
+        List<Integer> pages = new ArrayList<>();
+        pages.add(page);
+        for (int i = 1; i <= 3; i++) {
+            if (page - i > 0) {
+                pages.add(0, page - i);
+            }
+            if (page + i <= maxPage) {
+                pages.add(page + i);
+            }
+        }
+        int[] arr1 = pages.stream().mapToInt(Integer::valueOf).toArray();
+        pageInfo.setHasPreviousPage((page-1>0)&&(page<=maxPage));
+        pageInfo.setIsLastPage(page==maxPage);
+        pageInfo.setIsFirstPage(page==1);
+        pageInfo.setNavigatepageNums(arr1);
+        for (int i= size*page-3;i < size*page && i<list.size();i++){
+            selectList.add(list.get(i));
+        }
+        pageInfo.setList(selectList);
+        return pageInfo;
     }
 
 

@@ -1,12 +1,12 @@
 package com.xixi.person.talk.exception;
 
 /**
- * @Auther: xixi-98
+ * @Autheo: xixi-98
  * @Date: 2019/12/22 22:08
  * @Description:
  */
 public enum QuestionErrorCodeEnum implements MyErrorCode{
-
+    /** 异常信息 */
     QUESTION_NOT_FOUND(2000,"你找到问题不在了，要不要换个试试？"),
     USER_NOT_FOUND(2001,"抱歉，您未登录，请重新登录"),
     QUESTION_NOT_SELECT(2002,"未选中该问题，请重新选择"),
@@ -24,11 +24,11 @@ public enum QuestionErrorCodeEnum implements MyErrorCode{
         this.code=code;
         this.message = message;
     }
-
+    @Override
     public String getMessage() {
         return message;
     }
-
+    @Override
     public int getCode() {
         return code;
     }

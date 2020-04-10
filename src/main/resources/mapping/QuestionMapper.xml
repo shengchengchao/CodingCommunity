@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xixi.person.talk.mapper.QuestionMapper" >
-  <resultMap id="BaseResultMap" type="com.xixi.person.talk.model.Question" >
+<mapper namespace="com.xixi.person.talk.Mapper.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.xixi.person.talk.Model.Question" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="gmt_create" property="gmtCreate" jdbcType="BIGINT" />
@@ -12,7 +12,7 @@
     <result column="like_count" property="likeCount" jdbcType="INTEGER" />
     <result column="tag" property="tag" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.xixi.person.talk.model.Question" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.xixi.person.talk.Model.Question" extends="BaseResultMap" >
     <result column="description" property="description" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -80,7 +80,7 @@
   <sql id="Blob_Column_List" >
     description
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.xixi.person.talk.model.QuestionExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.xixi.person.talk.Model.QuestionExample" >
     select
     <if test="distinct" >
       distinct
@@ -96,7 +96,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xixi.person.talk.model.QuestionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xixi.person.talk.Model.QuestionExample" >
     select
     <if test="distinct" >
       distinct
@@ -122,13 +122,13 @@
     delete from question
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xixi.person.talk.model.QuestionExample" >
+  <delete id="deleteByExample" parameterType="com.xixi.person.talk.Model.QuestionExample" >
     delete from question
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xixi.person.talk.model.Question" >
+  <insert id="insert" parameterType="com.xixi.person.talk.Model.Question" >
     insert into question (id, title, gmt_create, 
       gmt_modified, creator_id, comment_count, 
       view_count, like_count, tag, 
@@ -138,7 +138,7 @@
       #{viewCount,jdbcType=INTEGER}, #{likeCount,jdbcType=INTEGER}, #{tag,jdbcType=VARCHAR}, 
       #{description,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.xixi.person.talk.model.Question" >
+  <insert id="insertSelective" parameterType="com.xixi.person.talk.Model.Question" >
     insert into question
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -205,7 +205,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xixi.person.talk.model.QuestionExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.xixi.person.talk.Model.QuestionExample" resultType="java.lang.Integer" >
     select count(*) from question
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -280,7 +280,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xixi.person.talk.model.Question" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.xixi.person.talk.Model.Question" >
     update question
     <set >
       <if test="title != null" >
@@ -313,7 +313,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xixi.person.talk.model.Question" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xixi.person.talk.Model.Question" >
     update question
     set title = #{title,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},
@@ -326,7 +326,7 @@
       description = #{description,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xixi.person.talk.model.Question" >
+  <update id="updateByPrimaryKey" parameterType="com.xixi.person.talk.Model.Question" >
     update question
     set title = #{title,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=BIGINT},

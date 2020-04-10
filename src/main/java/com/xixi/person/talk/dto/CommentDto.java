@@ -1,13 +1,15 @@
 package com.xixi.person.talk.dto;
 
-import com.xixi.person.talk.model.User;
+import com.xixi.person.talk.Model.User;
+
+import java.io.Serializable;
 
 /**
- * @Auther: xixi-98
+ * @author: xixi-98
  * @Date: 2019/12/26 09:20
  * @Description:
  */
-public class CommentDto {
+public class CommentDto implements Serializable {
 
     private Long id;
 

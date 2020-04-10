@@ -3,9 +3,9 @@ package com.xixi.person.talk.Service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.mapper.UserMapper;
-import com.xixi.person.talk.model.User;
-import com.xixi.person.talk.model.UserExample;
+import com.xixi.person.talk.Mapper.UserMapper;
+import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.Model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -24,8 +24,7 @@ import java.util.List;
 public class UserServiecImpl implements UserService {
     @Resource
     private UserMapper userMapper;
-    @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+
     @Autowired
     private RedisTemplate redisTemplate;
     /**

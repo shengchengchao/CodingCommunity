@@ -2,16 +2,14 @@ package com.xixi.person.talk.Service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xixi.person.talk.Enum.NotificationEnum;
+import com.xixi.person.talk.enums.NotificationEnum;
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.dto.NotificationDto;
-import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
 import com.xixi.person.talk.exception.QuestionException;
-import com.xixi.person.talk.mapper.NotificationMapper;
-import com.xixi.person.talk.mapper.UserMapper;
-import com.xixi.person.talk.model.*;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import com.xixi.person.talk.Mapper.NotificationMapper;
+import com.xixi.person.talk.Mapper.UserMapper;
+import com.xixi.person.talk.Model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -35,7 +33,7 @@ public class NotificationServiceImpl implements NotificationService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-
+    @Override
     public  PageInfo selNotificationList(Long accountId, int size, int page) {
 
         //查询出当前页回复

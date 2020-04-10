@@ -11,9 +11,12 @@ public class HotTagDto implements Comparable,Serializable {
     private String name;
     private Integer priority;
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
     public String getName() {
         return name;
     }

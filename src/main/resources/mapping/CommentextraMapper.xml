@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xixi.person.talk.mapper.CommentextraMapper" >
-    <resultMap id="BaseResultMap" type="com.xixi.person.talk.model.Comment" >
+<mapper namespace="com.xixi.person.talk.Mapper.CommentextraMapper" >
+    <resultMap id="BaseResultMap" type="com.xixi.person.talk.Model.Comment" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="parent_id" property="parentId" jdbcType="BIGINT" />
         <result column="type" property="type" jdbcType="INTEGER" />
@@ -13,7 +13,7 @@
         <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
     </resultMap>
 <!--修改评论下的评论数  采用了事务的方式 使用增加的方法 来避免多个用户同时访问的评论数不同 可以使用乐观锁的方法  考虑评论数重要性 没有采用-->
-    <update id="updatecommentConunt" parameterType="com.xixi.person.talk.model.Comment" >
+    <update id="updatecommentConunt" parameterType="com.xixi.person.talk.Model.Comment" >
         update comment
             SET
                comment_count = comment_count+#{commentCount,jdbcType=INTEGER}
