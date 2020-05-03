@@ -1,9 +1,9 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
-import com.xixi.person.talk.enums.NotificationEnum;
 import com.xixi.person.talk.Service.NotificationService;
-import com.xixi.person.talk.Model.Notification;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.enums.NotificationEnum;
+import com.xixi.person.talk.model.Notification;
+import com.xixi.person.talk.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

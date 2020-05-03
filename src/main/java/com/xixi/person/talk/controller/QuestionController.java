@@ -1,11 +1,11 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
-import com.xixi.person.talk.enums.CommentTypeEnum;
 import com.xixi.person.talk.Service.CommentService;
 import com.xixi.person.talk.Service.QuestionService;
+import com.xixi.person.talk.enums.CommentTypeEnum;
 import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.dto.QuestionDto;
-import com.xixi.person.talk.Model.Question;
+import com.xixi.person.talk.model.Question;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,13 +1,13 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
 
-import com.xixi.person.talk.enums.CommentTypeEnum;
 import com.xixi.person.talk.Service.CommentService;
+import com.xixi.person.talk.enums.CommentTypeEnum;
 import com.xixi.person.talk.dto.CommentDto;
 import com.xixi.person.talk.dto.ResultDto;
 import com.xixi.person.talk.exception.QuestionErrorCodeEnum;
-import com.xixi.person.talk.Model.Comment;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.model.Comment;
+import com.xixi.person.talk.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

@@ -1,9 +1,9 @@
 package com.xixi.person.talk.schedule;
 
-import com.xixi.person.talk.Mapper.QuestionMapper;
-import com.xixi.person.talk.Model.Question;
-import com.xixi.person.talk.Model.QuestionExample;
+
 import com.xixi.person.talk.dto.HotTagDto;
+import com.xixi.person.talk.mapper.QuestionMapper;
+import com.xixi.person.talk.model.Question;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -34,7 +34,7 @@ public class TagTasks {
     public  List<String> setHotTag(){
         Map<String,Integer> priorities = new HashMap<>();
         List<String> hots = new ArrayList<>();
-        List<Question> questions = questionMapper.selectByExample(new QuestionExample());
+        List<Question> questions = null;
         for (Question question : questions) {
             String[] tags = StringUtils.split(question.getTag(), ",");
             for (String tag : tags) {

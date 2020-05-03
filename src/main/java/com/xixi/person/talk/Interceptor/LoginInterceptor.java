@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

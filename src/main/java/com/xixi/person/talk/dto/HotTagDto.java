@@ -10,7 +10,6 @@ import java.io.Serializable;
 public class HotTagDto implements Comparable,Serializable {
     private String name;
     private Integer priority;
-    private int test1;
 
 
     public String getName() {

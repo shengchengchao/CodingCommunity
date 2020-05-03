@@ -1,35 +1,24 @@
-package com.xixi.person.talk.Model;
+package com.xixi.person.talk.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class Tagcache implements Serializable {
-    private Short id;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
+@Data
+@TableName("tagcache")
+public class Tagcache  implements Serializable {
+
+    @TableId(type = IdType.AUTO)
+    @TableField("id")
+    private Integer id;
+    @TableField("cache")
     private String cache;
-
+    @TableField("name")
     private String name;
 
-    public Short getId() {
-        return id;
-    }
-
-    public void setId(Short id) {
-        this.id = id;
-    }
-
-    public String getCache() {
-        return cache;
-    }
-
-    public void setCache(String cache) {
-        this.cache = cache == null ? null : cache.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
 }

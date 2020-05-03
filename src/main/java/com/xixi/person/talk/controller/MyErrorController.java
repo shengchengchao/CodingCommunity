@@ -1,4 +1,4 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

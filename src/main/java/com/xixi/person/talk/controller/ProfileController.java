@@ -1,10 +1,13 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.dto.NotificationDto;
+import com.xixi.person.talk.model.Question;
+import com.xixi.person.talk.model.User;
+import com.xixi.person.talk.utils.Pageutils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,6 +46,7 @@ public class ProfileController {
                           @RequestParam(defaultValue = "1") int page){
 
         User user = (User) session.getAttribute("user");
+        Pageutils<Question> pageInfo=null;
         if (user == null || "".equals(user)){
             return "redirect:/index";
         }
@@ -52,18 +56,18 @@ public class ProfileController {
             String search="";
             String tag="";
             String sort="";
-            PageInfo pageInfo= null;
-            try {
-                pageInfo = questionServiceImpl.selQuestionList(user.getAccountId(),size,page,search,tag, sort);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            pageInfo = questionServiceImpl.selQuestionList(user.getAccountId(),size,page,search,tag, sort);
+//            try {
+//
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             model.addAttribute("pageInfo",pageInfo);
         }else if("replies".equals(action)){
             model.addAttribute("section","replies");
             model.addAttribute("sectionName","最近回复");
-            PageInfo pageInfo= notificationServiceImpl.selNotificationList(user.getAccountId(),size,page);
-            model.addAttribute("pageInfo",pageInfo);
+            Pageutils<NotificationDto> notificationDtoPageutils = notificationServiceImpl.selNotificationList(user.getAccountId(), size, page);
+            model.addAttribute("pageInfo",notificationDtoPageutils);
         }
         return "profile";
     }

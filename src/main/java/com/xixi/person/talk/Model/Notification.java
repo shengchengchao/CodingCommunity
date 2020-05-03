@@ -1,95 +1,36 @@
-package com.xixi.person.talk.Model;
+package com.xixi.person.talk.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class Notification implements Serializable {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+@Data
+@TableName("notification")
+public class Notification  implements Serializable {
+
+    @TableId(type = IdType.AUTO)
+    @TableField("id")
     private Long id;
-    //通知者
+    @TableField("notifier")
     private Long notifier;
-    //需要被通知的人
+    @TableField("receiver")
     private Long receiver;
-    //回复评论或者问题的id
+    @TableField("outerid")
     private Long outerid;
-    //使用enum 表示是回复了问题 还是评论
+    @TableField("type")
     private Integer type;
-    //创建时间
+    @TableField("gmt_create")
     private Long gmtCreate;
-    //已读 还是未读
+    @TableField("status")
     private Integer status;
-    //通知者名字
+    @TableField("notifier_name")
     private String notifierName;
-    //回复评论或者问题的title
+    @TableField("outer_title")
     private String outerTitle;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getNotifier() {
-        return notifier;
-    }
-
-    public void setNotifier(Long notifier) {
-        this.notifier = notifier;
-    }
-
-    public Long getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(Long receiver) {
-        this.receiver = receiver;
-    }
-
-    public Long getOuterid() {
-        return outerid;
-    }
-
-    public void setOuterid(Long outerid) {
-        this.outerid = outerid;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getNotifierName() {
-        return notifierName;
-    }
-
-    public void setNotifierName(String notifierName) {
-        this.notifierName = notifierName == null ? null : notifierName.trim();
-    }
-
-    public String getOuterTitle() {
-        return outerTitle;
-    }
-
-    public void setOuterTitle(String outerTitle) {
-        this.outerTitle = outerTitle == null ? null : outerTitle.trim();
-    }
 }

@@ -1,12 +1,10 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
 import com.xixi.person.talk.Service.QuestionService;
-
-import com.xixi.person.talk.Service.SearchQueService;
-import com.xixi.person.talk.Service.TagCacheService;
+import com.xixi.person.talk.Service.TagcacheService;
 import com.xixi.person.talk.dto.QuestionDto;
-import com.xixi.person.talk.Model.Question;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.model.Question;
+import com.xixi.person.talk.model.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -33,9 +31,7 @@ public class PublishController {
     @Resource
     private QuestionService questionServiceImpl;
     @Resource
-    private SearchQueService searchQueServiceImpl;
-    @Resource
-    private TagCacheService tagCacheServiceImpl;
+    private TagcacheService tagCacheServiceImpl;
     @Autowired
     private RedisTemplate redisTemplate;
     /**
@@ -115,14 +111,14 @@ public class PublishController {
             questionDto.setUser(user);
             Question insquestion = questionServiceImpl.insquestion(questionDto);
             //更新es
-            searchQueServiceImpl.put(insquestion);
+
         }else {
             //编辑问题
             // 将使用id查询出的QuestionDto与session中的用户id进行比较 ,防止非提问者对问题进行篡改,跳转index页面 使cookies失效
             QuestionDto questionsel = questionServiceImpl.selQuestionByid(questionDto.getId());
             if (user.getAccountId().equals(questionsel.getCreatorId())) {
                 Question question = questionServiceImpl.updateQuestion(questionDto);
-                searchQueServiceImpl.put(question);
+                //searchQueServiceImpl.put(question);
             } else {
                 model.addAttribute("error", "请重新登录");
                 request.getSession().removeAttribute("user");

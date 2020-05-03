@@ -1,36 +1,25 @@
-package com.xixi.person.talk.Mapper;
+package com.xixi.person.talk.mapper;
 
-import com.xixi.person.talk.Model.Question;
-import com.xixi.person.talk.Model.QuestionExample;
+
+import com.xixi.person.talk.Config.SuperMapper;
+import com.xixi.person.talk.model.Question;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface QuestionMapper {
-    int countByExample(QuestionExample example);
+@Mapper
+public interface QuestionMapper extends SuperMapper<Question> {
 
-    int deleteByExample(QuestionExample example);
+    /**
+     * @Description: 让问题的评论数加1
+     * @Author: shengchengchao
+     * @Date: 2020/5/2
+     * @param:
+     * @return:
+     **/
+    void updatecommentConunt(Question question);
 
-    int deleteByPrimaryKey(Long id);
+    void updatevicwConunt(Question question);
 
-    int insert(Question record);
-
-    int insertSelective(Question record);
-
-    List<Question> selectByExampleWithBLOBs(QuestionExample example);
-
-    List<Question> selectByExample(QuestionExample example);
-
-    Question selectByPrimaryKey(Long id);
-
-    int updateByExampleSelective(@Param("record") Question record, @Param("example") QuestionExample example);
-
-    int updateByExampleWithBLOBs(@Param("record") Question record, @Param("example") QuestionExample example);
-
-    int updateByExample(@Param("record") Question record, @Param("example") QuestionExample example);
-
-    int updateByPrimaryKeySelective(Question record);
-
-    int updateByPrimaryKeyWithBLOBs(Question record);
-
-    int updateByPrimaryKey(Question record);
+    List<Question> selQuestionTag(Question question);
 }

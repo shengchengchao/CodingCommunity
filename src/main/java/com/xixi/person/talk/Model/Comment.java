@@ -1,95 +1,37 @@
-package com.xixi.person.talk.Model;
+package com.xixi.person.talk.model;
 
-  import java.io.Serializable;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class Comment implements Serializable {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+@Data
+@TableName("comment")
+public class Comment  implements Serializable {
+
+    @TableId(type = IdType.AUTO)
+    @TableField("id")
     private Long id;
-
+    @TableField("parent_id")
     private Long parentId;
-
+    @TableField("type")
     private Integer type;
-
+    @TableField("commentator")
     private Long commentator;
-
+    @TableField("gmt_create")
     private Long gmtCreate;
-
+    @TableField("gmt_modified")
     private Long gmtModified;
-
+    @TableField("like_count")
     private Long likeCount;
-
+    @TableField("content")
     private String content;
-
+    @TableField("comment_count")
     private Integer commentCount;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public Long getCommentator() {
-        return commentator;
-    }
-
-    public void setCommentator(Long commentator) {
-        this.commentator = commentator;
-    }
-
-    public Long getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Long gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Long getGmtModified() {
-        return gmtModified;
-    }
-
-    public void setGmtModified(Long gmtModified) {
-        this.gmtModified = gmtModified;
-    }
-
-    public Long getLikeCount() {
-        return likeCount;
-    }
-
-    public void setLikeCount(Long likeCount) {
-        this.likeCount = likeCount;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
-    }
-
-    public Integer getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(Integer commentCount) {
-        this.commentCount = commentCount;
-    }
 }

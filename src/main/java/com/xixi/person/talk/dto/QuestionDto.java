@@ -1,6 +1,7 @@
 package com.xixi.person.talk.dto;
 
-import com.xixi.person.talk.Model.User;
+
+import com.xixi.person.talk.model.User;
 
 import java.io.Serializable;
 

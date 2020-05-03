@@ -1,10 +1,11 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.dto.AccessTokendto;
 import com.xixi.person.talk.dto.GithubUserdto;
-import com.xixi.person.talk.Model.User;
+import com.xixi.person.talk.mapper.UserMapper;
+import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.utils.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,7 +32,7 @@ public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
     @Resource
-    private UserService userServiceImpl;
+    private UserService userService;
     @Autowired
     private RedisTemplate redisTemplate;
 
@@ -74,7 +75,7 @@ public class AuthorizeController {
             user.setCreateDate(System.currentTimeMillis());
             user.setUpdateDate(user.getCreateDate());
             user.setBio(githubuser.getBio());
-            userServiceImpl.insUser(user);
+            userService.saveorupd(user);
             //存放到cookies中
             Cookie cookie=new Cookie("token",token);
             response.addCookie(cookie);

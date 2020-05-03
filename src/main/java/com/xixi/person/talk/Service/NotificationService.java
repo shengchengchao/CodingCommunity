@@ -1,19 +1,19 @@
 package com.xixi.person.talk.Service;
 
-import com.github.pagehelper.PageInfo;
-import com.xixi.person.talk.Model.Notification;
-import com.xixi.person.talk.Model.User;
 
-/**
- * @Author: xixi-98
- * @Date: 2019/12/29 17:52
- * @Description:
- */
-public interface NotificationService {
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.xixi.person.talk.dto.NotificationDto;
+import com.xixi.person.talk.model.Notification;
+import com.xixi.person.talk.model.User;
+import com.xixi.person.talk.utils.Pageutils;
 
-    PageInfo selNotificationList(Long accountId, int size, int page);
+public interface NotificationService extends IService<Notification> {
 
-    int unreadCount(Long id);
 
     Notification read(Long id, User user);
+
+    Pageutils<NotificationDto> selNotificationList(Long accountId, int size, int page);
+
+    Integer unreadCount(Long receiver);
 }

@@ -1,10 +1,11 @@
-package com.xixi.person.talk.controller;
+package com.xixi.person.talk.Controller;
 
-import com.alibaba.druid.pool.vendor.SybaseExceptionSorter;
-import com.github.pagehelper.PageInfo;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.Service.UserService;
+import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.schedule.TagTasks;
+import com.xixi.person.talk.utils.Pageutils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +50,9 @@ public class IndexController {
                           @RequestParam(defaultValue = "new",name = "sort", required = false) String sort){
         Long id=0L;
         //查询出当前页数据，填充列表数据
-        PageInfo pageInfo = null;
-
-        try {
-            pageInfo = questionServiceImpl.selQuestionList(id,size, page,search,tag,sort);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        model.addAttribute("pageInfo",pageInfo);
+        Pageutils pageList;
+        pageList = questionServiceImpl.selQuestionList(id,size, page,search,tag,sort);
+        model.addAttribute("pageInfo",pageList);
         model.addAttribute("tag",tag);
         model.addAttribute("search",search);
         model.addAttribute("sort",sort);

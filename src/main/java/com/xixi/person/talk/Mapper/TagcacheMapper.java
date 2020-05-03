@@ -1,30 +1,10 @@
-package com.xixi.person.talk.Mapper;
+package com.xixi.person.talk.mapper;
 
-import com.xixi.person.talk.Model.Tagcache;
-import com.xixi.person.talk.Model.TagcacheExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface TagcacheMapper {
-    int countByExample(TagcacheExample example);
+import com.xixi.person.talk.Config.SuperMapper;
+import com.xixi.person.talk.model.Tagcache;
 
-    int deleteByExample(TagcacheExample example);
+public interface TagcacheMapper extends SuperMapper<Tagcache> {
 
-    int deleteByPrimaryKey(Short id);
 
-    int insert(Tagcache record);
-
-    int insertSelective(Tagcache record);
-
-    List<Tagcache> selectByExample(TagcacheExample example);
-
-    Tagcache selectByPrimaryKey(Short id);
-
-    int updateByExampleSelective(@Param("record") Tagcache record, @Param("example") TagcacheExample example);
-
-    int updateByExample(@Param("record") Tagcache record, @Param("example") TagcacheExample example);
-
-    int updateByPrimaryKeySelective(Tagcache record);
-
-    int updateByPrimaryKey(Tagcache record);
 }
