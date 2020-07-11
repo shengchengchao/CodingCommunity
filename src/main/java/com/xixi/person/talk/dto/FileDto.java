@@ -11,6 +11,7 @@ public class FileDto implements Serializable {
     private int success;
     private String message;
     private String url;
+    private String urls;
 
     public int getSuccess() {
         return success;
