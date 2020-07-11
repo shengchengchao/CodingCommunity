@@ -1,8 +1,7 @@
 package com.xixi.person.talk.Service.impl;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
 import com.xixi.person.talk.Service.QuestionService;
 import com.xixi.person.talk.dto.QuestionDto;
@@ -15,10 +14,12 @@ import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.utils.Pageutils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,11 +29,27 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
     private QuestionMapper questionMapper;
     @Resource
     private UserMapper userMapper;
-
+    @Autowired
+    private ElasticsearchTemplate elasticsearchTemplate;
 
     @Override
     public Pageutils selQuestionList(Long id, int size, int page, String search, String tag, String sort) {
-        return null;
+        Pageutils<QuestionDto> pagelist =null;
+        if(search==null || search.length()==0){
+            List<Question> list = new LambdaQueryChainWrapper<Question>(questionMapper).list();
+            List<QuestionDto> listDto =new ArrayList<>();
+            list.forEach(each->{
+                QuestionDto qd =new QuestionDto();
+                BeanUtils.copyProperties(each,qd);
+                User user = new LambdaQueryChainWrapper<User>(userMapper).eq(User::getAccountId, each.getCreatorId()).one();
+                qd.setUser(user);
+                listDto.add(qd);
+            });
+            pagelist=new Pageutils<>();
+            pagelist.setPagination(size,page,listDto);
+
+        }
+        return pagelist;
     }
 
     @Override

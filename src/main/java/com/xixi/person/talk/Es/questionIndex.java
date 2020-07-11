@@ -1,8 +1,8 @@
-package com.xixi.person.talk.index;
+package com.xixi.person.talk.Es;
 
-import com.xixi.person.talk.dto.QuestionInfo;
 import org.springframework.stereotype.Component;
 
 @Component
 public class questionIndex extends EsIndex<QuestionInfo> {
+
 }

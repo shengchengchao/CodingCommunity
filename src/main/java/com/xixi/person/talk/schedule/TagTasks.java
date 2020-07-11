@@ -1,6 +1,9 @@
 package com.xixi.person.talk.schedule;
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.additional.query.impl.LambdaQueryChainWrapper;
 import com.xixi.person.talk.dto.HotTagDto;
 import com.xixi.person.talk.mapper.QuestionMapper;
 import com.xixi.person.talk.model.Question;
@@ -22,6 +25,8 @@ import java.util.*;
 public class TagTasks {
     @Resource
     private QuestionMapper questionMapper;
+
+
     /**
     * @Description:  先遍历所有的question  采用权重公式 priority=question + 3*commentCount + viewCount
      * 得到所有的priorities后 使用优先队列完成topN 小顶堆
@@ -34,7 +39,7 @@ public class TagTasks {
     public  List<String> setHotTag(){
         Map<String,Integer> priorities = new HashMap<>();
         List<String> hots = new ArrayList<>();
-        List<Question> questions = null;
+        List<Question> questions = new LambdaQueryChainWrapper<Question>(questionMapper).list();
         for (Question question : questions) {
             String[] tags = StringUtils.split(question.getTag(), ",");
             for (String tag : tags) {

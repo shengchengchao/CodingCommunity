@@ -1,4 +1,4 @@
-package com.xixi.person.talk.dto;
+package com.xixi.person.talk.Es;
 
 import lombok.Data;
 

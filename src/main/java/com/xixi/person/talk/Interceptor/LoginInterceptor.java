@@ -1,12 +1,9 @@
 package com.xixi.person.talk.Interceptor;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+
 import com.xixi.person.talk.Service.NotificationService;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -22,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Service
 public class LoginInterceptor implements HandlerInterceptor {
-    @Autowired
-    private RedisTemplate redisTemplate;
+
     @Resource
     private NotificationService notificationServiceImpl;
     @Resource
@@ -39,21 +35,12 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(cookies!=null && cookies.length!=0){
             for (Cookie cookie : cookies) {
                 if("token".equals(cookie.getName())){
-                    String token = cookie.getValue();
-                    String userStr = (String)redisTemplate.opsForValue().get(token);
-                    user = JSON.parseObject(userStr, User.class);
-                    if(user == null){
-                        user = userServiceImpl.selUser(token);
-                        String useString= JSONObject.toJSONString(user);
-                        redisTemplate.opsForValue().set(token,useString);
-                    }
-                    request.getSession().setAttribute("user",user);
-                    unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
-                    if (unreadCount == null){
-                        unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
-                        redisTemplate.opsForValue().set("unreadCount",unreadCount);
-                    }
-                    request.getSession().setAttribute("unreadCount", unreadCount);
+                        user = userServiceImpl.selUser(cookie.getValue());
+                        if(user!=null){
+                            request.getSession().setAttribute("user",user);
+                            unreadCount = notificationServiceImpl.unreadCount(user.getAccountId());
+                            request.getSession().setAttribute("unreadCount", unreadCount);
+                        }
                     break;
                 }
             }

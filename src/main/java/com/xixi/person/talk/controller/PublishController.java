@@ -6,8 +6,6 @@ import com.xixi.person.talk.dto.QuestionDto;
 import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +30,6 @@ public class PublishController {
     private QuestionService questionServiceImpl;
     @Resource
     private TagcacheService tagCacheServiceImpl;
-    @Autowired
-    private RedisTemplate redisTemplate;
     /**
      * @Description: 初始发布问题页面
      * @Param:
@@ -105,12 +101,10 @@ public class PublishController {
             model.addAttribute("error", "用户未登录，请点击登录");
             return "publish";
         }
-        if (questionDto.getId() == null && questionDto.getId().equals("")) {
-            //新建问题
-            QuestionDto selectQuestion = questionServiceImpl.selQuestionByid(questionDto.getId());
+        if (questionDto.getId() == null ) {
             questionDto.setUser(user);
             Question insquestion = questionServiceImpl.insquestion(questionDto);
-            //更新es
+
 
         }else {
             //编辑问题
@@ -123,7 +117,6 @@ public class PublishController {
                 model.addAttribute("error", "请重新登录");
                 request.getSession().removeAttribute("user");
                 Cookie cookie = new Cookie("token", null);
-                redisTemplate.delete(user.getToken());
                 cookie.setMaxAge(0);
                 response.addCookie(cookie);
             }

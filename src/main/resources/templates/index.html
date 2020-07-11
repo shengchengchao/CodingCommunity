@@ -30,9 +30,6 @@
                 <li role="presentation" th:class="${sort == 'new' || sort == '' ? 'active':''}">
                     <a th:href="@{/index(sort='new')}">最新</a>
                 </li>
-                <li role="presentation" th:class="${sort == 'hot60' ? 'active':''}">
-                    <a th:href="@{/index(sort='hot60')}">60天最热</a>
-                </li>
                 <li role="presentation" th:class="${sort == 'hot' ? 'active':''}">
                     <a th:href="@{/index(sort='hot')}">最热</a>
                 </li>
@@ -41,7 +38,7 @@
                 </li>
             </ul>
 
-            <div class="media" th:each="question : ${pageInfo.list}">
+            <div class="media" th:each="question : ${pageList.pageLists}">
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
@@ -60,30 +57,30 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <!-- 显示第一页图标 <<-->
-                    <li th:unless="${pageInfo.isFirstPage}">
+                    <li th:unless="${pageList.FirstPage}">
                         <a th:href="@{/index(page=1,search=${search},tag=${tag},sort=${sort})}" aria-label="Previous">
                             <span aria-hidden="true">&lt;&lt;</span>
                         </a>
                     </li>
                     <!-- 显示上一页图标 <-->
-                    <li th:if="${pageInfo.hasPreviousPage}">
-                        <a  th:href="@{/index(page=${pageInfo.pageNum - 1},search=${search},tag=${tag},sort=${sort})}"  aria-label="Previous">
+                    <li th:if="${pageList.PreviousPage}">
+                        <a  th:href="@{/index(page=${pageList.pages - 1},search=${search},tag=${tag},sort=${sort})}"  aria-label="Previous">
                             <span aria-hidden="true">&lt;</span>
                         </a>
                     </li>
                     <!-- 显示页码图标 < -->
-                    <li th:each="page : ${pageInfo.navigatepageNums}">
+                    <li th:each="page : ${pageList.navigatepageNums}">
                         <a th:href="@{/index(page=${page},search=${search},tag=${tag},sort=${sort})}" th:text="${page}"></a>
                     </li>
                     <!-- 显示下一页图标 >-->
-                    <li th:if="${pageInfo.hasNextPage}">
-                        <a th:href="@{/index(page=${pageInfo.pageNum +1 },search=${search},tag=${tag},sort=${sort})}" aria-label="Previous">
+                    <li th:if="${pageList.showNext}">
+                        <a th:href="@{/index(page=${pageList.pages +1 },search=${search},tag=${tag},sort=${sort})}" aria-label="Previous">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
                     <!-- 显示最后最后一页图标 >>-->
-                    <li th:unless="${pageInfo.isLastPage}">
-                        <a th:href="@{/index(page=${pageInfo.pages},search=${search},tag=${tag},sort=${sort})}"  aria-label="Previous">
+                    <li th:unless="${pageList.showEndPage}">
+                        <a th:href="@{/index(page=${pageList.totalPage},search=${search},tag=${tag},sort=${sort})}"  aria-label="Previous">
                             <span aria-hidden="true">&gt;&gt;</span>
                         </a>
                     </li>

@@ -13,12 +13,9 @@ import com.xixi.person.talk.exception.QuestionException;
 import com.xixi.person.talk.mapper.NotificationMapper;
 import com.xixi.person.talk.mapper.QuestionMapper;
 import com.xixi.person.talk.model.Notification;
-import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.utils.Pageutils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -31,8 +28,6 @@ import java.util.List;
 public class NotificationServiceImpl extends ServiceImpl<NotificationMapper, Notification> implements NotificationService {
     @Resource
     private NotificationMapper notificationMapper;
-    @Autowired
-    private RedisTemplate redisTemplate;
     @Resource
     private QuestionMapper questionMapper;
     /**
@@ -55,12 +50,13 @@ public class NotificationServiceImpl extends ServiceImpl<NotificationMapper, Not
         notification.setStatus(NotificationEnum.READ.getType());
         boolean update = lambdaUpdate().update(notification);
         System.out.println(update);
-        Integer unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
-        if (unreadCount == null){
+
+        Integer unreadCount = null;
+        if (unreadCount == 0){
             unreadCount = this.unreadCount(notification.getReceiver());
-            redisTemplate.opsForValue().set("unreadCount",unreadCount);
+
         }
-        redisTemplate.opsForValue().set("unreadCount",unreadCount-1);
+
         return notification;
     }
 
@@ -82,7 +78,8 @@ public class NotificationServiceImpl extends ServiceImpl<NotificationMapper, Not
             notificationDto.setTypeName(NotificationEnum.getName(each.getType()));
             list.add(notificationDto);
         });
-        Pageutils<NotificationDto> pages =new Pageutils<>(list,5);
+        Pageutils<NotificationDto> pages =new Pageutils<NotificationDto>();
+        pages.setPagination(size,page,list);
         return pages;
 
     }

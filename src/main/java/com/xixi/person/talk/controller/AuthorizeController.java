@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.xixi.person.talk.Service.UserService;
 import com.xixi.person.talk.dto.AccessTokendto;
 import com.xixi.person.talk.dto.GithubUserdto;
-import com.xixi.person.talk.mapper.UserMapper;
 import com.xixi.person.talk.model.User;
 import com.xixi.person.talk.utils.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +31,6 @@ public class AuthorizeController {
     private GithubProvider githubProvider;
     @Resource
     private UserService userService;
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Value("${AccessTokendto.Client_id}")
     private String clientId;
@@ -80,8 +76,6 @@ public class AuthorizeController {
             Cookie cookie=new Cookie("token",token);
             response.addCookie(cookie);
             cookie.setMaxAge(60 * 60 * 24 * 30 * 6);
-            String userJson = JSONObject.toJSONString(user);
-            redisTemplate.opsForValue().set(token,userJson);
 
             return "redirect:/index";
         }else{
@@ -94,7 +88,6 @@ public class AuthorizeController {
                          HttpServletResponse response,HttpSession session) {
         User user = (User) session.getAttribute("user");
         request.getSession().removeAttribute("user");
-        redisTemplate.delete(user.getToken());
         Cookie cookie = new Cookie("token", null);
         cookie.setMaxAge(0);
         response.addCookie(cookie);

@@ -52,11 +52,12 @@ public class IndexController {
         //查询出当前页数据，填充列表数据
         Pageutils pageList;
         pageList = questionServiceImpl.selQuestionList(id,size, page,search,tag,sort);
-        model.addAttribute("pageInfo",pageList);
+        model.addAttribute("pageList",pageList);
         model.addAttribute("tag",tag);
         model.addAttribute("search",search);
         model.addAttribute("sort",sort);
         model.addAttribute("tags",tagTasks.setHotTag());
+
         return "index";
     }
 

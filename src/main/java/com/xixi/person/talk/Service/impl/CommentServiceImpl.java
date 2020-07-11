@@ -18,9 +18,6 @@ import com.xixi.person.talk.model.Notification;
 import com.xixi.person.talk.model.Question;
 import com.xixi.person.talk.model.User;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -40,8 +37,6 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
     private NotificationMapper notificationMapper;
     @Resource
     private UserMapper userMapper;
-    @Autowired
-    private  RedisTemplate redisTemplate;
     @Resource
     private NotificationService notificationServiceImpl;
 
@@ -119,13 +114,10 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
         record.setOuterid(outerid);
 
         notificationMapper.insert(record);
-        //redis 记录通知数
-        Integer unreadCount = (Integer) redisTemplate.opsForValue().get("unreadCount");
-        if (unreadCount == null){
-            unreadCount = notificationServiceImpl.unreadCount(record.getReceiver());
-            redisTemplate.opsForValue().set("unreadCount",unreadCount);
+        if (record.getReceiver() == null){
+            Integer unreadCount = notificationServiceImpl.unreadCount(record.getReceiver());
         }
-        redisTemplate.opsForValue().set("unreadCount",unreadCount+1);
+
     }
 
 

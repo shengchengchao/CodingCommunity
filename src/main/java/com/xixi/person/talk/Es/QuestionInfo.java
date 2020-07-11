@@ -1,4 +1,4 @@
-package com.xixi.person.talk.dto;
+package com.xixi.person.talk.Es;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@Document(indexName= "question",type ="question")
+@Document(indexName= "community",type ="question")
 public class QuestionInfo {
 
     @Field(type = FieldType.Keyword)

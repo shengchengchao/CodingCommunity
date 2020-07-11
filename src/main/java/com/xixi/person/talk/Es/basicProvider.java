@@ -1,4 +1,4 @@
-package com.xixi.person.talk.EsProvider;
+package com.xixi.person.talk.Es;
 /**
  * @ Description :  基础的数据提供者
  * @ Author :  shengchengchao

@@ -5,7 +5,10 @@ import com.xixi.person.talk.Config.SuperMapper;
 import com.xixi.person.talk.model.Comment;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+/**
+ * @author xixi-98
+ */
+
 public interface CommentMapper extends SuperMapper<Comment> {
 
 

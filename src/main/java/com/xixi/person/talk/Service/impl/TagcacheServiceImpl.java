@@ -8,8 +8,6 @@ import com.xixi.person.talk.dto.TagDTO;
 import com.xixi.person.talk.mapper.TagcacheMapper;
 import com.xixi.person.talk.model.Tagcache;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -25,17 +23,11 @@ public class TagcacheServiceImpl extends ServiceImpl<TagcacheMapper, Tagcache> i
 
     @Resource
     private TagcacheMapper tagcacheMapper;
-    @Autowired
-    private RedisTemplate redisTemplate;
 
     @Override
     public List<TagDTO> get() {
         //能够从redis中查询出标签
-        String obj = (String)redisTemplate.opsForValue().get("tagDTOS");
-        List<TagDTO> tagDtosCache = JSON.parseArray(obj, TagDTO.class);
-        if(tagDtosCache!=null){
-            return tagDtosCache;
-        }
+
         List<TagDTO> tagDtos = new ArrayList<>();
         TagDTO program = new TagDTO();
         program = getTag(program, "开发语言", "program");
@@ -55,7 +47,6 @@ public class TagcacheServiceImpl extends ServiceImpl<TagcacheMapper, Tagcache> i
         tagDtos.add(tool);
         // 将集合转为json字符串放入redis中
         String tagDtoStr = JSONObject.toJSONString(tagDtos);
-        redisTemplate.opsForValue().set("tagDTOS",tagDtoStr);
         return tagDtos;
     }
 

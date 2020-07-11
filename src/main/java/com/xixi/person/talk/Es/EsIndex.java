@@ -1,4 +1,4 @@
-package com.xixi.person.talk.index;
+package com.xixi.person.talk.Es;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

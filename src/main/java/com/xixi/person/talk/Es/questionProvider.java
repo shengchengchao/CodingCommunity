@@ -1,11 +1,9 @@
-package com.xixi.person.talk.EsProvider;
+package com.xixi.person.talk.Es;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xixi.person.talk.dto.QuestionInfo;
-import com.xixi.person.talk.dto.datePage;
 import com.xixi.person.talk.model.Question;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
